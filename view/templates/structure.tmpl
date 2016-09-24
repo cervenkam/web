@@ -7,12 +7,20 @@
 		<script src="controller/js/ajax_content.js"></script>
 		<script src="view/bootstrap/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" media="screen" href="view/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" media="screen" href="view/style.css" />
 	</head>
 	<body>
-		<div id="header">
+		<div id="header" class="container-fluid">
 			<h1>Webov&aacute; konference</h1>
 		</div>
-		<div id="side_menu">
+		<div id="login">
+			{% if user %}
+				{% include 'login.tmpl' %}
+			{% else %}
+				{% include 'logout.tmpl' %}
+			{% endif %} 
+		</div>
+		<div class="container-fluid" id="side_menu">
 			<nav class="navbar navbar-inverse">
 				<div class="navbar-header">
 					<a class="navbar-brand ajax_content" href="index" data-target="#content">Konference</a>
@@ -24,10 +32,8 @@
 				</ul>
 			</nav>
 		</div>
-		<div id="content">
-			{% block content %}
+		<div class="container-fluid" id="content">
 			{% include page ~ '.tmpl' %}
-			{% endblock %}
 		</div>
 	</body>
 </html>

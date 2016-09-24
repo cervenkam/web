@@ -1,6 +1,7 @@
 <?php
 	require_once 'controller/twig/lib/Twig/Autoloader.php';
 	require_once 'model/database_pool.php';
+	session_start();
 	Twig_Autoloader::register();
 	DatabasePool::init('mysql:host=localhost;dbname=web','web','password');
 	$loader = new Twig_Loader_Filesystem('view/templates');
