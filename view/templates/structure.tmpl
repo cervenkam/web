@@ -14,7 +14,7 @@
 			<h1>Webov&aacute; konference</h1>
 		</div>
 		<div id="login">
-			{% if user %}
+			{% if session.user_name %}
 				{% include 'login.tmpl' %}
 			{% else %}
 				{% include 'logout.tmpl' %}

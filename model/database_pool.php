@@ -7,15 +7,18 @@
 		}
 		public static function instance(){
 			if(DatabasePool::$inst === null){
-				echo 'Database not initialized, call "init" function first';
+				DatabasePool::init('mysql:host=localhost;dbname=web','web','password');
 			}
 			return DatabasePool::$inst;
+		}
+		public static function kill(){
+			DatabasePool::$inst = null;
 		}
 
 		private $QUERIES = array(
 			'ADD_REGULAR_USER' => 'INSERT INTO users VALUES(NULL, 1, ?, ?, ?, ?, ?)',
 			'LIST_OF_MY_TEXTS' => 'SELECT * FROM texts WHERE user_id=?',
-			'GET_USER' => 'SELECT ID FROM users WHERE name=? AND password=?'
+			'GET_USER_ID' => 'SELECT ID FROM users WHERE username=? AND password=?'
 		);
 
 		public $db;
@@ -27,9 +30,6 @@
 		private function query_array($query,$data){
 			try{
 				$stmt = $this->db->prepare($query);
-				for($a=0; $a<count($data); $a++){
-					$stmt->bindParam($a,$data[$a]);
-				}
 				$stmt->execute($data);
 				return $stmt->fetchAll();
 			}catch(PDOException $e){
@@ -43,7 +43,7 @@
 			for($a = 1; $a < $numargs; $a++){
 				$arr[$a-1] = func_get_arg($a);
 			}
-			return query_array($query,$data);
+			return $this->query_array($this->QUERIES[$query],$arr);
 		}
 	}
 ?>
