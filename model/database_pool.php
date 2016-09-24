@@ -4,6 +4,7 @@
 
 		public static function init($dns,$username,$password){
 			DatabasePool::$inst = new DatabasePool($dns,$username,$password);
+			DatabasePool::$inst->query('SET_UTF8');
 		}
 		public static function instance(){
 			if(DatabasePool::$inst === null){
@@ -16,11 +17,15 @@
 		}
 
 		private $QUERIES = array(
-			'ADD_REGULAR_USER' => 'INSERT INTO users VALUES(NULL, 0, ?, ?, ?, ?, ?)',
+			'SET_UTF8' => 'SET NAMES utf8',
+			'ADD_REGULAR_USER' => 'INSERT INTO users VALUES(NULL, "00000", ?, ?, ?, ?, ?)',
 			'LIST_OF_MY_TEXTS' => 'SELECT * FROM texts WHERE user_id=?',
 			'GET_ID' => 'SELECT ID FROM users WHERE username=?',
 			'GET_USER_ID' => 'SELECT ID FROM users WHERE username=? AND password=?',
-			'LIST_OF_PRIVILEGES' => 'SELECT * FROM privileges'
+			'GET_ALL_PRIVILEGES' => 'SELECT username,type FROM users',
+			'LIST_OF_PRIVILEGES' => 'SELECT * FROM privileges',
+			'SET_PRIVILEGE' => 'UPDATE users SET type=? WHERE username=?',
+			'GET_PRIVILEGE' => 'SELECT type FROM users WHERE username=?'
 		);
 
 		public $db;

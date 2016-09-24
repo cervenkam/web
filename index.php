@@ -1,5 +1,6 @@
 <?php
 	require_once 'controller/twig/lib/Twig/Autoloader.php';
+	require_once 'controller/functions.php';
 	require_once 'model/database_pool.php';
 	session_start();
 	Twig_Autoloader::register();
@@ -14,7 +15,7 @@
 	if(!file_exists('view/templates/'.$page.'.tmpl')){
 		$page = 'error';
 	}
-	if(isset($_POST['part_only']) && $_POST['part_only'] == 'yes'){
+	if(part_only()){
 		$template_page = $page.".tmpl";
 	}else{
 		$template_page = "structure.tmpl";
@@ -23,7 +24,7 @@
 	$template = $twig->loadTemplate($template_page);
 	echo $template->render(array(
 		'page' => $page,
-		'pool' => DatabasePool::instance()
+		'privileges' => get_all_privileges()
 	));
 	DatabasePool::kill();
 ?>

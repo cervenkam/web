@@ -1,5 +1,6 @@
 <?php
 	require_once('../model/database_pool.php');
+	require_once('functions.php');
 	session_start();
 	$pool = DatabasePool::instance();
 	$ret = $pool->query('GET_USER_ID',$_POST['name'],$_POST['password']);
@@ -11,8 +12,7 @@
 	}else{
 		echo "LOGIN FAIL<br />";
 	}
-	var_dump($ret);
-	if(!isset($_POST['part_only']) || $_POST['part_only'] != 'yes'){
+	if(!part_only()){
 		header("Location:../index");
 		exit();
 	}

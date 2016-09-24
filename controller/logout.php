@@ -1,8 +1,9 @@
 <?php
+	require_once('functions.php');
 	session_start();
 	unset($_SESSION['user_id']);
 	unset($_SESSION['user_name']);
-	if(!isset($_POST['part_only']) || $_POST['part_only'] != 'yes'){
+	if(!part_only()){
 		header("Location:../index");
 		exit();
 	}else{

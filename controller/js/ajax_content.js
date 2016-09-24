@@ -1,6 +1,7 @@
 var hrefs = [];
 var targets = [];
 var json_data;
+var __switched_off__ = false;
 function recursive_ajax(a,max){
 	console.log(json_data);
 	$.ajax({
@@ -32,9 +33,13 @@ function ajax_content(target,href,append_data){
 }
 
 function async(){
+	if(__switched_off__){
+		return;
+	}
 	console.log("reload");
 	$("a.ajax_content").each(function(){
 		this.href="javascript:void(0)";
+		$(this).unbind('click');
 		$(this).click(function(){
 			ajax_content(
 				$(this).data('target'),
@@ -48,6 +53,12 @@ function async(){
 		var sbmt = $(prnt).find(":submit");
 		console.log(sbmt);
 		$(sbmt).prop("type","button");
+		$(sbmt).unbind('click');
+		$(prnt).find("input").keypress(function(e){
+			if(e.keyCode==13){
+				$(sbmt).click();
+			}
+		});
 		$(sbmt).click(function(){
 			var ser = $(prnt).serializeArray();
 			var data = {};
