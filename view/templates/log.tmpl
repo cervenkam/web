@@ -1,0 +1,21 @@
+{% if session.user_name %}
+P&rcaron;ihl&aacute;&scaron;en jako:
+<a class="ajax_content" href="user" data-href="user" data-target="#content">{{ session.user_name }}</a>
+<a class="ajax_content" href="controller/logout.php"
+	data-href="controller/logout.php log" data-target="NULL #login">Odhl&aacute;sit</a>
+{% else %}
+<form class="ajax_content container" data-target="NULL #login" data-action="controller/login.php log"
+	action="controller/login.php" method="post">
+	<div class="form-group">
+		<label for="login_name_field">Name:</label>
+		<input type="text" class="form-control" name="name" id="login_name_field" />
+	</div>
+	<div class="form-group">
+		<label for="login_password_field">Password:</label>
+		<input type="password" class="form-control" name="password" id="login_password_field" />
+	</div>
+	<div class="form-group">
+		<input type="submit" value="P&rcaron;ihl&aacute;sit" />
+	</div>
+</form>
+{% endif %}

@@ -14,11 +14,7 @@
 			<h1>Webov&aacute; konference</h1>
 		</div>
 		<div id="login">
-			{% if session.user_name %}
-				{% include 'login.tmpl' %}
-			{% else %}
-				{% include 'logout.tmpl' %}
-			{% endif %} 
+			{% include 'log.tmpl' %}
 		</div>
 		<div class="container-fluid" id="side_menu">
 			<nav class="navbar navbar-inverse">
@@ -34,6 +30,9 @@
 		</div>
 		<div class="container-fluid" id="content">
 			{% include page ~ '.tmpl' %}
+		</div>
+		<!-- TODO remove following div -->
+		<div id="debug_div">
 		</div>
 	</body>
 </html>
