@@ -16,9 +16,11 @@
 		}
 
 		private $QUERIES = array(
-			'ADD_REGULAR_USER' => 'INSERT INTO users VALUES(NULL, 1, ?, ?, ?, ?, ?)',
+			'ADD_REGULAR_USER' => 'INSERT INTO users VALUES(NULL, 0, ?, ?, ?, ?, ?)',
 			'LIST_OF_MY_TEXTS' => 'SELECT * FROM texts WHERE user_id=?',
-			'GET_USER_ID' => 'SELECT ID FROM users WHERE username=? AND password=?'
+			'GET_ID' => 'SELECT ID FROM users WHERE username=?',
+			'GET_USER_ID' => 'SELECT ID FROM users WHERE username=? AND password=?',
+			'LIST_OF_PRIVILEGES' => 'SELECT * FROM privileges'
 		);
 
 		public $db;

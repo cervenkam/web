@@ -7,15 +7,14 @@ P&rcaron;ihl&aacute;&scaron;en jako:
 <form class="ajax_content container" data-target="NULL #login" data-action="controller/login.php log"
 	action="controller/login.php" method="post">
 	<div class="form-group">
-		<label for="login_name_field">Name:</label>
+		<label for="login_name_field">Jm&eacute;no:</label>
 		<input type="text" class="form-control" name="name" id="login_name_field" />
 	</div>
 	<div class="form-group">
-		<label for="login_password_field">Password:</label>
+		<label for="login_password_field">Heslo:</label>
 		<input type="password" class="form-control" name="password" id="login_password_field" />
 	</div>
-	<div class="form-group">
-		<input type="submit" value="P&rcaron;ihl&aacute;sit" />
-	</div>
+	<input type="submit" value="P&rcaron;ihl&aacute;sit" />
+	<a class="ajax_content" href="register" data-href="register" data-target="#content">Registrovat</a>
 </form>
 {% endif %}
