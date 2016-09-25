@@ -1,0 +1,25 @@
+Moje opr&aacute;vn&ecaron;n&iacute;:
+<table class="table table-condensed">
+	<thead>
+		<tr>
+			<th>Jm&eacute;no</th>
+		{% for key,value in privileges[session.user_name] %}
+			<th>{{ value.name }}</th>
+		{% endfor %}
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>{{ session.user_name }}</td>
+		{% for key,value in privileges[session.user_name] %}
+			<td>
+				{% if value.value %}
+					<img class="privilege" src="view/images/ano.png" alt="ano" />
+				{% else %}
+					<img class="privilege" src="view/images/ne.png" alt="ne" />
+				{% endif %}
+			</td>
+		{% endfor %}
+		</tr>
+	</tbody>
+</table>

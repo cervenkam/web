@@ -1,20 +1,30 @@
 {% if session.user_name %}
-P&rcaron;ihl&aacute;&scaron;en jako:
-<a class="ajax_content" href="user" data-href="user" data-target="#content">{{ session.user_name }}</a>
-<a class="ajax_content" href="controller/logout.php"
-	data-href="controller/logout.php log index" data-target="NULL #login #content">Odhl&aacute;sit</a>
+<div class="form_logout">
+	P&rcaron;ihl&aacute;&scaron;en jako:
+	<a class="ajax_content" href="user" data-href="user" data-target="#content">{{ session.user_name }}</a>
+	<a class="ajax_content" href="controller/logout.php"
+		data-href="controller/logout.php log index" data-target="NULL #login #content">Odhl&aacute;sit</a>
+</div>
 {% else %}
-<form class="ajax_content container" data-target="NULL #login" data-action="controller/login.php log"
+<form class="ajax_content container form-horizontal" data-target="NULL #login" data-action="controller/login.php log"
 	action="controller/login.php" method="post">
 	<div class="form-group">
-		<label for="login_name_field">Jm&eacute;no:</label>
-		<input type="text" class="form-control" name="name" id="login_name_field" />
+		<label class="col-sm-2" for="login_name_field">Jm&eacute;no:</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control input-sm" name="name" id="login_name_field" />
+		</div>
 	</div>
 	<div class="form-group">
-		<label for="login_password_field">Heslo:</label>
-		<input type="password" class="form-control" name="password" id="login_password_field" />
+		<label class="col-sm-2" for="login_password_field">Heslo:</label>
+		<div class="col-sm-10">
+			<input type="password" class="form-control input-sm" name="password" id="login_password_field" />
+		</div>
 	</div>
-	<input type="submit" value="P&rcaron;ihl&aacute;sit" />
-	<a class="ajax_content" href="register" data-href="register" data-target="#content">Registrovat</a>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<input type="submit" value="P&rcaron;ihl&aacute;sit" />
+			<a class="ajax_content" href="register" data-href="register" data-target="#content">Registrovat</a>
+		</div>
+	</div>
 </form>
 {% endif %}

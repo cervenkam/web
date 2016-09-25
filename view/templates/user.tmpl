@@ -1,61 +1,9 @@
 {% if session.user_name %}
-	Moje opr&aacute;vn&ecaron;n&iacute;:
-	<table class="table table-condensed">
-		<thead>
-			<tr>
-			{% for key,value in privileges[session.user_name] %}
-				<th>{{ value.name }}</th>
-			{% endfor %}
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-			{% for key,value in privileges[session.user_name] %}
-				<td>
-					{% if value.value %}
-						<img class="privilege" src="view/images/ano.png" alt="ano" />
-					{% else %}
-						<img class="privilege" src="view/images/ne.png" alt="ne" />
-					{% endif %}
-				</td>
-			{% endfor %}
-			</tr>
-		</tbody>
-	</table>
-	{% if privileges[session.user_name][1].value %}
-		Opr&aacute;vn&ecaron;n&iacute; ostatn&iacute;ch u&zcaron;ivatel&#367;:
-		<table class="table table-condensed">
-			<thead>
-				<tr>
-					<th>Jm&eacute;no</th>
-				{% for key,value in privileges[session.user_name] %}
-					<th>{{ value.name }}</th>
-				{% endfor %}
-				</tr>
-			</thead>
-			<tbody>
-				{% for name,privilege in privileges if name != session.user_name %}
-					<tr>
-						<td>{{ name }}</td>
-					{% for key,value in privilege %}
-						<td>
-							<a href="controller/switch_privilege.php?user={{ name }}&privilege={{ key }}"
-							data-href="controller/switch_privilege.php?user={{ name }}&privilege={{ key }}"
-							class="ajax_content" data-target="#img_{{ name }}_{{ key }}">
-							<div id="img_{{ name }}_{{ key }}"> 
-							{% if value.value %}
-								<img class="privilege" src="view/images/ano.png" alt="ano" />
-							{% else %}
-								<img class="privilege" src="view/images/ne.png" alt="ne" />
-							{% endif %}
-							</div></a>
-						</td>
-					{% endfor %}
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-	{% endif %}
+	{% for key,value in privileges[session.user_name] %}
+		{% if value %}
+			{% include 'privilege_' ~ key ~ '.tmpl' ignore missing %}
+		{% endif %}
+	{% endfor %}
 {% else %}
 Nejste p&rcaron;ihl&aacute;&scaron;
 {% endif %}

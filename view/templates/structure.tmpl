@@ -11,7 +11,9 @@
 	</head>
 	<body>
 		<div id="header" class="container-fluid">
-			<h1>Webov&aacute; konference</h1>
+			<a class="ajax_content" href="index" data-href="index" data-target="#content">
+				<h1>Webov&aacute; konference</h1>
+			</a>
 		</div>
 		<div id="login">
 			{% include 'log.tmpl' %}
@@ -25,6 +27,13 @@
 					<li>
 						<a class="ajax_content" href="about" data-href="about" data-target="#content">O konferenci</a>
 					</li>
+					{% for key,value in privileges[session.user_name] %}
+						{% if value %}
+							<li><a class="ajax_content" href="privilege_{{ key }}"
+								data-href="privilege_{{ key }}" data-target="#content">
+								{{ value.name|capitalize }}</a></li>
+						{% endif %}
+					{% endfor %}
 				</ul>
 			</nav>
 		</div>

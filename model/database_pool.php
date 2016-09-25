@@ -18,7 +18,7 @@
 
 		private $QUERIES = array(
 			'SET_UTF8' => 'SET NAMES utf8',
-			'ADD_REGULAR_USER' => 'INSERT INTO users VALUES(NULL, "00000", ?, ?, ?, ?, ?)',
+			'ADD_REGULAR_USER' => 'INSERT INTO users VALUES(NULL, NULL, ?, ?, ?, ?, ?)',
 			'LIST_OF_MY_TEXTS' => 'SELECT * FROM texts WHERE user_id=?',
 			'GET_ID' => 'SELECT ID FROM users WHERE username=?',
 			'GET_USER_ID' => 'SELECT ID FROM users WHERE username=? AND password=?',

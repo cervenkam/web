@@ -1,8 +1,14 @@
-#login form{
-	width: 20%;
-	margin: 20px 0 20px auto;
+#login form, .form_logout{
+	width: 30%;
+	min-height: 50px;
+	text-align: right;
+	margin: 20px 20px 20px auto;
+}
+.form_logout{
+	margin-top: 5px;
 }
 #header{
+	height: 50px;
 	float: left;
 }
 #debug_div{ /* TODO delete this */
@@ -15,4 +21,7 @@
 }
 img.privilege{
 	width: 20px;
+}
+.form-group{
+	height: 30px;
 }
