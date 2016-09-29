@@ -24,7 +24,10 @@
 	$template = $twig->loadTemplate($template_page);
 	echo $template->render(array(
 		'page' => $page,
-		'privileges' => get_all_privileges()
+		'privileges' => get_all_privileges(),
+		'ratings' => get_texts_to_rate(),
+		'texts' => get_all_texts(),
+		'rating_types' => get_all_rating_types()
 	));
 	DatabasePool::kill();
 ?>

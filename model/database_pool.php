@@ -25,7 +25,16 @@
 			'GET_ALL_PRIVILEGES' => 'SELECT username,type FROM users',
 			'LIST_OF_PRIVILEGES' => 'SELECT * FROM privileges',
 			'SET_PRIVILEGE' => 'UPDATE users SET type=? WHERE username=?',
-			'GET_PRIVILEGE' => 'SELECT type FROM users WHERE username=?'
+			'GET_PRIVILEGE' => 'SELECT type FROM users WHERE username=?',
+			'GET_TEXTS_TO_RATE' => 'SELECT *,ratings.type AS r_type FROM texts INNER JOIN ratings ON ratings.text_id = texts.ID INNER JOIN users ON ratings.user_id = users.ID',
+			'GET_PDF' => 'SELECT file, LENGTH(file) AS size FROM texts WHERE texts.ID=?',
+			'GET_ALL_TEXTS' => 'SELECT * FROM texts',
+			'PUBLISH' => 'UPDATE texts SET published=NOW() WHERE ID=?',
+			'NOT_PUBLISH' => 'UPDATE texts SET published=NULL WHERE ID=?',
+			'ADD_TEXT' => 'INSERT INTO texts VALUES(NULL, ?, ?, ?, ?,NULL)',
+			'GET_ALL_RATING_TYPES' => 'SELECT * FROM rating_types',
+			'RATE' => 'INSERT INTO ratings VALUES( ?, ?, ?, ?)',
+			'NOT_RATE' => 'DELETE FROM ratings WHERE ratings.user_id=? AND ratings.text_id=? AND ratings.type=?'
 		);
 
 		public $db;

@@ -27,6 +27,27 @@
 		//my_var_dump($arr);
 		return $arr;
 	}
+
+	function get_all_rating_types(){
+		$pool = DatabasePool::instance();
+		$list = $pool->query('GET_ALL_RATING_TYPES');
+		return $list;
+	}
+
+	function get_all_texts(){
+		$pool = DatabasePool::instance();
+		$list = $pool->query('GET_ALL_TEXTS');
+		return $list;
+	}
+
+	function get_texts_to_rate(){
+		if(!logged_in()){
+			return array();
+		}
+		$pool = DatabasePool::instance();
+		$list = $pool->query('GET_TEXTS_TO_RATE');
+		return $list;
+	}
 	
 	function my_var_dump($x){
 		echo '<pre>';

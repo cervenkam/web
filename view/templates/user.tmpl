@@ -1,6 +1,6 @@
 {% if session.user_name %}
 	{% for key,value in privileges[session.user_name] %}
-		{% if value %}
+		{% if value.value %}
 			{% include 'privilege_' ~ key ~ '.tmpl' ignore missing %}
 		{% endif %}
 	{% endfor %}

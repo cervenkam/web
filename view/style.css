@@ -25,3 +25,9 @@ img.privilege{
 .form-group{
 	height: 30px;
 }
+table.table_texts td:nth-child(1), table.table_texts td:nth-child(2){
+	width: 20%;
+}
+.small_input{
+	width: 50px;
+}

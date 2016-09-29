@@ -1,3 +1,4 @@
+{% if session.user_name %}
 Moje opr&aacute;vn&ecaron;n&iacute;:
 <table class="table table-condensed">
 	<thead>
@@ -23,3 +24,6 @@ Moje opr&aacute;vn&ecaron;n&iacute;:
 		</tr>
 	</tbody>
 </table>
+{% else %}
+<p>Nejste p&rcaron;ihl&aacute;&scaron;en</p>
+{% endif %}

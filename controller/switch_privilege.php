@@ -20,6 +20,6 @@
 		echo $response[$curr];
 	}
 	if(!part_only()){
-		header("Location:../user");
+		header("Location:../privilege_1");
 	}
 ?>

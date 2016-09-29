@@ -1,3 +1,4 @@
+{% if session.user_name %}
 Opr&aacute;vn&ecaron;n&iacute; ostatn&iacute;ch u&zcaron;ivatel&#367;:
 <table class="table table-condensed">
 	<thead>
@@ -30,3 +31,6 @@ Opr&aacute;vn&ecaron;n&iacute; ostatn&iacute;ch u&zcaron;ivatel&#367;:
 		{% endfor %}
 	</tbody>
 </table>
+{% else %}
+<p>Nejste p&rcaron;ihl&aacute;&scaron;en</p>
+{% endif %}
