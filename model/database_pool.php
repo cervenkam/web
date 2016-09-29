@@ -26,7 +26,7 @@
 			'LIST_OF_PRIVILEGES' => 'SELECT * FROM privileges',
 			'SET_PRIVILEGE' => 'UPDATE users SET type=? WHERE username=?',
 			'GET_PRIVILEGE' => 'SELECT type FROM users WHERE username=?',
-			'GET_TEXTS_TO_RATE' => 'SELECT *,ratings.type AS r_type FROM texts INNER JOIN ratings ON ratings.text_id = texts.ID INNER JOIN users ON ratings.user_id = users.ID',
+			'GET_TEXTS_TO_RATE' => 'SELECT users.ID AS user_id, texts.ID AS text_id, ratings.type AS type, ratings.mark AS mark FROM texts INNER JOIN ratings ON ratings.text_id = texts.ID INNER JOIN users ON ratings.user_id = users.ID',
 			'GET_PDF' => 'SELECT file, LENGTH(file) AS size FROM texts WHERE texts.ID=?',
 			'GET_ALL_TEXTS' => 'SELECT * FROM texts',
 			'PUBLISH' => 'UPDATE texts SET published=NOW() WHERE ID=?',

@@ -20,14 +20,27 @@
 				<td><a class="ajax_content" data-href="controller/download.php?id={{ text.ID }}"
 					data-target="NULL" href="controller/download.php?id={{ text.ID }}">PDF soubor</a></td>
 				{% for type in rating_types %}
-					{% for rating in ratings if rating.text_id == text.ID and rating.r_type == type.ID %}
-						<td>
+					<td>
+					{% for rating in ratings if rating.user_id != session.user_id[0] %}
+						{% for rat in rating if rat.text_id == text.ID and rat.type == type.ID %}
+							{{ rat.mark }}
+						{% endfor %}
+					{% endfor %}
+					{% for rating in ratings if rating.user_id == session.user_id[0] %}
+						{% for rat in rating if rat.text_id == text.ID and rat.type == type.ID %}
 							<a class="ajax_content" href="controller/rate.php?delete=true&text_id={{ text.ID }}&type_id={{ type.ID }}"
 								data-href="controller/rate.php?delete=true&text_id={{ text.ID }}&type_id={{ type.ID }} privilege_4" 
-								data-target="NULL #content" />{{ rating.mark }}</a>
-							</td>
+								data-target="NULL #content" />{{ rat.mark }}</a>
+						{% else %}
+							<form action="controller/rate.php" data-action="controller/rate.php privilege_4"
+								data-target="NULL #content" class="ajax_content" method="POST">
+								<input type="hidden" name="text_id" value="{{ text.ID }}" />
+								<input type="hidden" name="type_id" value="{{ type.ID }}" />
+								<input class="small_input" type="text" name="rate" />
+								<input type="submit" name="submit" value="Nastavit" />
+							</form>
+						{% endfor %}
 					{% else %}
-						<td>
 						<form action="controller/rate.php" data-action="controller/rate.php privilege_4"
 							data-target="NULL #content" class="ajax_content" method="POST">
 							<input type="hidden" name="text_id" value="{{ text.ID }}" />
@@ -35,8 +48,8 @@
 							<input class="small_input" type="text" name="rate" />
 							<input type="submit" name="submit" value="Nastavit" />
 						</form>
-						</td>
 					{% endfor %}
+					</td>
 				{% endfor %}
 			</tr>
 		{% endfor %}

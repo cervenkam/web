@@ -46,7 +46,15 @@
 		}
 		$pool = DatabasePool::instance();
 		$list = $pool->query('GET_TEXTS_TO_RATE');
-		return $list;
+		my_var_dump($list);
+		$arr = array();
+		for($line=0; $line<count($list); $line++){
+			$arr[$list[$line]['user_id']][] = $list[$line];
+			$arr[$list[$line]['user_id']]['user_id'] = $list[$line]['user_id'];
+		}
+		my_var_dump($arr);
+		return $arr;
+
 	}
 	
 	function my_var_dump($x){
