@@ -1,0 +1,46 @@
+{% if session.user_name %}	
+		<table class="table table-condensed">
+			<tr>
+				<th rowspan="2">N&aacute;zev</th>
+				<th rowspan="2">Auto&rcaron;i</th>
+				<th rowspan="2">Abstract</th>
+				<th rowspan="2">PDF</th>
+				<th colspan="{{ rating_types|length }}">Zn&aacute;mky</th>
+			</tr>
+			<tr>
+				{% for type in rating_types %}
+				<th>{{ type.name }}</th>
+				{% endfor %}
+			</tr>
+		{% for text in texts %}
+			<tr>
+				<td>{{ text.name }}</td>
+				<td>{{ text.authors }}</td>
+				<td>{{ text.abstract }}</td>
+				<td><a class="ajax_content" data-href="controller/download.php?id={{ text.ID }}"
+					data-target="NULL" href="controller/download.php?id={{ text.ID }}">PDF soubor</a></td>
+				{% for type in rating_types %}
+					{% for rating in ratings if rating.text_id == text.ID and rating.r_type == type.ID %}
+						<td>
+							<a class="ajax_content" href="controller/rate.php?delete=true&text_id={{ text.ID }}&type_id={{ type.ID }}"
+								data-href="controller/rate.php?delete=true&text_id={{ text.ID }}&type_id={{ type.ID }} privilege_4" 
+								data-target="NULL #content" />{{ rating.mark }}</a>
+							</td>
+					{% else %}
+						<td>
+						<form action="controller/rate.php" data-action="controller/rate.php privilege_4"
+							data-target="NULL #content" class="ajax_content" method="POST">
+							<input type="hidden" name="text_id" value="{{ text.ID }}" />
+							<input type="hidden" name="type_id" value="{{ type.ID }}" />
+							<input class="small_input" type="text" name="rate" />
+							<input type="submit" name="submit" value="Nastavit" />
+						</form>
+						</td>
+					{% endfor %}
+				{% endfor %}
+			</tr>
+		{% endfor %}
+		</table>
+{% else %}
+<p>Nejste p&rcaron;ihl&aacute;&scaron;en</p>
+{% endif %}

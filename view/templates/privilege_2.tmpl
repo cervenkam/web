@@ -1,0 +1,46 @@
+<p>K publikov&aacute;n&iacute;</p>
+{% for text in texts if not text.published %}
+<table class="table_texts table table-condensed">
+	<tr>
+		<td>Jm&eacute;no</td>
+		<td>{{ text.name }}</td>
+		<td colspan="3">{{ text.abstract }}
+	</tr>
+	<tr>
+		<td>Auto&rcaron;i</td>
+		<td>{{ text.authors }}</td>
+	</tr>
+	<tr>
+		<td>St&aacute;hnout</td>
+		<td><a class="ajax_content" data-href="controller/download.php?id={{ text.ID }}" data-target="NULL" href="controller/download.php?id={{ text.ID }}">PDF soubor</a></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<a href="controller/publish.php?id={{ text.ID }}" data-href="controller/publish.php?id={{ text.ID }}" data-target="NULL">Publikovat</a>
+		</td>
+	</tr>
+{% endfor %}
+</table>
+<p>Publikov&aacute;no</p>
+{% for text in texts if text.published %}
+<table class="table_texts table table-condensed">
+	<tr>
+		<td>Jm&eacute;no</td>
+		<td>{{ text.name }}</td>
+		<td colspan="3">{{ text.abstract }}
+	</tr>
+	<tr>
+		<td>Auto&rcaron;i</td>
+		<td>{{ text.authors }}</td>
+	</tr>
+	<tr>
+		<td>St&aacute;hnout</td>
+		<td><a class="ajax_content" data-href="controller/download.php?id={{ text.ID }}" data-target="NULL" href="controller/download.php?id={{ text.ID }}">PDF soubor</a></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<a href="controller/publish.php?delete=true&id={{ text.ID }}" data-href="controller/publish.php?delete=true&id={{ text.ID }}" data-target="NULL">Nepublikovat</a>
+		</td>
+	</tr>
+</table>
+{% endfor %}
