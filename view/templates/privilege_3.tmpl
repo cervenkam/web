@@ -16,19 +16,32 @@
 	</tr>
 	{% for rev in reviews[text.ID] %}
 	<tr>
-		<td>{{ users[rev.user_id] }}</td>
+		<td><a class="ajax_content" data-href="controller/remove_reviewer.php?text_id={{ text.ID }}&user_id={{ rev.user_id }} privilege_3"
+			data-target="NULL #content" href="controller/remove_reviewer.php?text_id={{ text.ID }}&user_id={{ rev.user_id }}">{{ users[rev.user_id].full_name }}</a></td>
 		<td>
-			{#{% for rat in ratings if rat.text_id == text.ID %}#}
 			{% for rating in ratings[rev.user_id] %}
-				<a class="ajax_content" href="controller/rate.php?delete=true&text_id={{ text.ID }}&type_id={{ type.ID }}"
-					data-href="controller/rate.php?delete=true&text_id={{ text.ID }}&type_id={{ type.ID }} privilege_4" 
-					data-target="NULL #content" />{{ rating.mark }}</a>
+				{{ rating.mark }}
 			{% else %}
 				Zat&iacute;m &zcaron;&aacute;dn&eacute; hodnocen&iacute;
 			{% endfor %}
 		</td>
 	</tr>
 	{% endfor %}
+<tr>
+	<td>P&rcaron;idat recenzenta</td>
+	<td>
+		<form class="ajax_content" data-target="NULL #content" data-action="controller/add_reviewer.php privilege_3"
+			action="controller/add_reviewer.php" method="post">
+			<select name="user_id">
+				{% for key,user in users if privileges[key][4].value %}
+					<option value="{{ key }}">{{ user.full_name }}</option>
+				{% endfor %}
+				<input type="hidden" name="text_id" value="{{ text.ID }}" />
+				<input type="submit" name="submit" value="P&rcaron;idat" />
+			</select>
+		</form>
+	</td>
+</tr>
 {% endfor %}
 </table>
 {% else %}

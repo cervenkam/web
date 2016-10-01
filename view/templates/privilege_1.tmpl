@@ -4,15 +4,15 @@ Opr&aacute;vn&ecaron;n&iacute; ostatn&iacute;ch u&zcaron;ivatel&#367;:
 	<thead>
 		<tr>
 			<th>Jm&eacute;no</th>
-		{% for key,value in privileges[session.user_name] %}
-			<th>{{ value.name }}</th>
+		{% for privilege in privileges[session.user_id[0]] %}
+			<th>{{ privilege.name }}</th>
 		{% endfor %}
 		</tr>
 	</thead>
 	<tbody>
-		{% for name,privilege in privileges if name != session.user_name %}
+		{% for key,privilege in privileges if key != session.user_id[0] %}
 			<tr>
-				<td>{{ name }}</td>
+				<td>{{ users[key].full_name }}</td>
 			{% for key,value in privilege %}
 				<td>
 					<a href="controller/switch_privilege.php?user={{ name }}&privilege={{ key }}"

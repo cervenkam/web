@@ -18,7 +18,7 @@
 		$arr = array();
 		for($usr=0; $usr<count($all); $usr++){
 			for($a=0; $a<count($list); $a++){
-				$arr[$all[$usr]['username']][$list[$a]['ID']] = array(
+				$arr[$all[$usr]['ID']][$list[$a]['ID']] = array(
 					'name' => $list[$a]['type'],
 					'value' => (int)$all[$usr]['type']{$list[$a]['ID']-1}
 				);
@@ -36,7 +36,7 @@
 		$list = $pool->query('GET_ALL_USERS');
 		$arr = array();
 		for($line=0; $line<count($list); $line++){
-			$arr[$list[$line]['ID']] = $list[$line]['username'];	
+			$arr[$list[$line]['ID']] = $list[$line];	
 		}
 		//my_var_dump($arr);
 		return $arr;

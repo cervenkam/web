@@ -17,26 +17,45 @@
 		}
 
 		private $QUERIES = array(
+		//SET
+				//no params
 			'SET_UTF8' => 'SET NAMES utf8',
-			'ADD_REGULAR_USER' => 'INSERT INTO users VALUES(NULL, NULL, ?, ?, ?, ?, ?)',
-			'LIST_OF_MY_TEXTS' => 'SELECT * FROM texts WHERE user_id=?',
-			'GET_ID' => 'SELECT ID FROM users WHERE username=?',
-			'GET_USER_ID' => 'SELECT ID FROM users WHERE username=? AND password=?',
-			'GET_ALL_PRIVILEGES' => 'SELECT username,type FROM users',
-			'LIST_OF_PRIVILEGES' => 'SELECT * FROM privileges',
-			'SET_PRIVILEGE' => 'UPDATE users SET type=? WHERE username=?',
-			'GET_PRIVILEGE' => 'SELECT type FROM users WHERE username=?',
-			'GET_TEXTS_TO_RATE' => 'SELECT users.ID AS user_id, texts.ID AS text_id, ratings.type AS type, ratings.mark AS mark FROM texts INNER JOIN ratings ON ratings.text_id = texts.ID INNER JOIN users ON ratings.user_id = users.ID',
-			'GET_PDF' => 'SELECT file, LENGTH(file) AS size FROM texts WHERE texts.ID=?',
-			'GET_ALL_TEXTS' => 'SELECT * FROM texts',
-			'GET_ALL_USERS' => 'SELECT * FROM users',
-			'PUBLISH' => 'UPDATE texts SET published=NOW() WHERE ID=?',
-			'NOT_PUBLISH' => 'UPDATE texts SET published=NULL WHERE ID=?',
-			'ADD_TEXT' => 'INSERT INTO texts VALUES(NULL, ?, ?, ?, ?,NULL)',
+		//SELECT
+			//no params
+			'GET_ALL_TEXTS' =>        'SELECT * FROM texts',
+			'GET_ALL_USERS' =>        'SELECT * FROM users',
 			'GET_ALL_RATING_TYPES' => 'SELECT * FROM rating_types',
-			'RATE' => 'INSERT INTO ratings VALUES( ?, ?, ?, ?)',
-			'NOT_RATE' => 'DELETE FROM ratings WHERE ratings.user_id=? AND ratings.text_id=? AND ratings.type=?',
-			'GET_TEXTS_TO_REVIEW' => 'SELECT * FROM reviewers'
+			'LIST_OF_PRIVILEGES' =>   'SELECT * FROM privileges',
+			'GET_TEXTS_TO_REVIEW' =>  'SELECT * FROM reviewers',
+			'GET_ALL_PRIVILEGES' =>   'SELECT ID,type FROM users',
+			'GET_TEXTS_TO_RATE' =>    'SELECT users.ID AS user_id, texts.ID AS text_id, ratings.type AS type, ratings.mark AS mark FROM texts INNER JOIN ratings ON ratings.text_id = texts.ID INNER JOIN users ON ratings.user_id = users.ID',
+			//one param
+			'LIST_OF_MY_TEXTS' =>     'SELECT * FROM texts WHERE user_id=?',
+			'GET_PRIVILEGE' =>        'SELECT type FROM users WHERE username=?',
+			'GET_ID' =>               'SELECT ID FROM users WHERE username=?',
+			'GET_PDF' =>              'SELECT file, LENGTH(file) AS size FROM texts WHERE texts.ID=?',
+			//two params
+			'GET_USER_ID' =>          'SELECT ID FROM users WHERE username=? AND password=?',
+		//INSERT
+			//one param
+			'ADD_REVIEWER' =>     'INSERT INTO reviewers VALUES( ?, ?)',
+			//four params
+			'ADD_TEXT' =>         'INSERT INTO texts VALUES(NULL, ?, ?, ?, ?,NULL)',
+			'RATE' =>             'INSERT INTO ratings VALUES( ?, ?, ?, ?)',
+			//five params
+			'ADD_REGULAR_USER' => 'INSERT INTO users VALUES(NULL, NULL, ?, ?, ?, ?, ?)',
+		//UPDATE
+			//one param
+			'PUBLISH' =>       'UPDATE texts SET published=NOW() WHERE ID=?',
+			'NOT_PUBLISH' =>   'UPDATE texts SET published=NULL WHERE ID=?',
+			//two params
+			'SET_PRIVILEGE' => 'UPDATE users SET type=? WHERE username=?',
+		//DELETE
+			//one param
+			'REMOVE_REVIEWER' => 'DELETE FROM reviewers WHERE user_id=? AND text_id=?',
+			'REMOVE_REVIEWERS_RATES' => 'DELETE FROM ratings WHERE user_id=? AND text_id=?',
+			//three params
+			'NOT_RATE' => 'DELETE FROM ratings WHERE ratings.user_id=? AND ratings.text_id=? AND ratings.type=?'
 		);
 
 		public $db;

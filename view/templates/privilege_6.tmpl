@@ -4,15 +4,15 @@ Moje opr&aacute;vn&ecaron;n&iacute;:
 	<thead>
 		<tr>
 			<th>Jm&eacute;no</th>
-		{% for key,value in privileges[session.user_name] %}
+		{% for key,value in privileges[session.user_id[0]] %}
 			<th>{{ value.name }}</th>
 		{% endfor %}
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<td>{{ session.user_name }}</td>
-		{% for key,value in privileges[session.user_name] %}
+			<td>{{ users[session.user_id[0]].full_name }}</td>
+		{% for key,value in privileges[session.user_id[0]] %}
 			<td>
 				{% if value.value %}
 					<img class="privilege" src="view/images/ano.png" alt="ano" />
