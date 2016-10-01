@@ -27,7 +27,9 @@
 		'privileges' => get_all_privileges(),
 		'ratings' => get_texts_to_rate(),
 		'texts' => get_all_texts(),
-		'rating_types' => get_all_rating_types()
+		'rating_types' => get_all_rating_types(),
+		'users' => get_all_users(),
+		'reviews' => get_my_reviews()
 	));
 	DatabasePool::kill();
 ?>

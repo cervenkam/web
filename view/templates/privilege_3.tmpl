@@ -1,0 +1,36 @@
+{% if session.user_name %}
+<table class="table table-condensed">
+{% for text in texts %}
+	<tr>
+		<th>Jm&eacute;no</th>
+		<th>St&aacute;hnout</th>
+	</tr>
+	<tr>
+		<td>{{ text.name }}</td>
+		<td><a class="ajax_content" data-href="controller/download.php?id={{ text.ID }}"
+			data-target="NULL" href="controller/download.php?id={{ text.ID }}">PDF soubor</a></td>
+	</tr>
+	<tr>
+		<th>Recenzent</th>
+		<th>Hodnocen&iacute;</th>
+	</tr>
+	{% for rev in reviews[text.ID] %}
+	<tr>
+		<td>{{ users[rev.user_id] }}</td>
+		<td>
+			{#{% for rat in ratings if rat.text_id == text.ID %}#}
+			{% for rating in ratings[rev.user_id] %}
+				<a class="ajax_content" href="controller/rate.php?delete=true&text_id={{ text.ID }}&type_id={{ type.ID }}"
+					data-href="controller/rate.php?delete=true&text_id={{ text.ID }}&type_id={{ type.ID }} privilege_4" 
+					data-target="NULL #content" />{{ rating.mark }}</a>
+			{% else %}
+				Zat&iacute;m &zcaron;&aacute;dn&eacute; hodnocen&iacute;
+			{% endfor %}
+		</td>
+	</tr>
+	{% endfor %}
+{% endfor %}
+</table>
+{% else %}
+Nejste p&rcaron;ihl&aacute;&scaron;en
+{% endif %}

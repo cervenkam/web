@@ -1,7 +1,7 @@
 var hrefs = [];
 var targets = [];
 var json_data;
-var __switched_off__ = true;
+var __switched_off__ = false;
 function recursive_ajax(a,max){
 	console.log(json_data);
 	$.ajax({

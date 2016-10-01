@@ -28,6 +28,20 @@
 		return $arr;
 	}
 
+	function get_all_users(){
+		if(!logged_in()){
+			return array();
+		}
+		$pool = DatabasePool::instance();
+		$list = $pool->query('GET_ALL_USERS');
+		$arr = array();
+		for($line=0; $line<count($list); $line++){
+			$arr[$list[$line]['ID']] = $list[$line]['username'];	
+		}
+		//my_var_dump($arr);
+		return $arr;
+	}
+
 	function get_all_rating_types(){
 		$pool = DatabasePool::instance();
 		$list = $pool->query('GET_ALL_RATING_TYPES');
@@ -46,15 +60,27 @@
 		}
 		$pool = DatabasePool::instance();
 		$list = $pool->query('GET_TEXTS_TO_RATE');
-		my_var_dump($list);
 		$arr = array();
 		for($line=0; $line<count($list); $line++){
 			$arr[$list[$line]['user_id']][] = $list[$line];
-			$arr[$list[$line]['user_id']]['user_id'] = $list[$line]['user_id'];
 		}
-		my_var_dump($arr);
+		//my_var_dump($arr);
 		return $arr;
 
+	}
+	
+	function get_my_reviews(){
+		if(!logged_in()){
+			return array();
+		}
+		$pool = DatabasePool::instance();
+		$list = $pool->query('GET_TEXTS_TO_REVIEW');
+		$arr = array();
+		for($line=0; $line<count($list); $line++){
+			$arr[$list[$line]['text_id']][] = $list[$line];
+			//unset($list[$line]['text_id']);
+		}
+		return $arr;
 	}
 	
 	function my_var_dump($x){

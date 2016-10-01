@@ -29,12 +29,14 @@
 			'GET_TEXTS_TO_RATE' => 'SELECT users.ID AS user_id, texts.ID AS text_id, ratings.type AS type, ratings.mark AS mark FROM texts INNER JOIN ratings ON ratings.text_id = texts.ID INNER JOIN users ON ratings.user_id = users.ID',
 			'GET_PDF' => 'SELECT file, LENGTH(file) AS size FROM texts WHERE texts.ID=?',
 			'GET_ALL_TEXTS' => 'SELECT * FROM texts',
+			'GET_ALL_USERS' => 'SELECT * FROM users',
 			'PUBLISH' => 'UPDATE texts SET published=NOW() WHERE ID=?',
 			'NOT_PUBLISH' => 'UPDATE texts SET published=NULL WHERE ID=?',
 			'ADD_TEXT' => 'INSERT INTO texts VALUES(NULL, ?, ?, ?, ?,NULL)',
 			'GET_ALL_RATING_TYPES' => 'SELECT * FROM rating_types',
 			'RATE' => 'INSERT INTO ratings VALUES( ?, ?, ?, ?)',
-			'NOT_RATE' => 'DELETE FROM ratings WHERE ratings.user_id=? AND ratings.text_id=? AND ratings.type=?'
+			'NOT_RATE' => 'DELETE FROM ratings WHERE ratings.user_id=? AND ratings.text_id=? AND ratings.type=?',
+			'GET_TEXTS_TO_REVIEW' => 'SELECT * FROM reviewers'
 		);
 
 		public $db;
