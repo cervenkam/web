@@ -1,5 +1,9 @@
 {% if session.user_name %}
-Moje opr&aacute;vn&ecaron;n&iacute;:
+<div class="panel panel-default">
+<div class="panel-heading">
+	<p>Moje opr&aacute;vn&ecaron;n&iacute;</p>
+</div>
+<div class="panel-body">
 <table class="table table-condensed">
 	<thead>
 		<tr>
@@ -24,6 +28,8 @@ Moje opr&aacute;vn&ecaron;n&iacute;:
 		</tr>
 	</tbody>
 </table>
+</div>
+</div>
 {% else %}
 <p>Nejste p&rcaron;ihl&aacute;&scaron;en</p>
 {% endif %}

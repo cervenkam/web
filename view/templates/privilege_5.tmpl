@@ -1,4 +1,9 @@
 {% if session.user_name %}
+<div class="panel panel-default">
+<div class="panel-heading">
+	<p>P&rcaron;id&aacute;v&aacute;n&iacute; p&rcaron;&iacute;sp&ecaron;vk&#367;</p>
+</div>
+<div class="panel-body">
 <form enctype="multipart/form-data" class="container" action="controller/add.php" method="post">
 	<div class="form-group">
 		<label class="col-sm-2" for="add_name_field">N&aacute;zev p&rcaron;&iacute;sp&ecaron;vku:</label>
@@ -30,6 +35,8 @@
 		</div>
 	</div>
 </form>
+</div>
+</div>
 {% else %}
 Nejste p&rcaron;ihl&aacute;&scaron;en
 {% endif %}

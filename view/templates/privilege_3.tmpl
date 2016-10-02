@@ -1,6 +1,11 @@
 {% if session.user_name %}
-<table class="table table-condensed">
+<div class="panel panel-default">
+<div class="panel-heading">
+	<p>P&rcaron;id&aacute;v&aacute;n&iacute; a odeb&iacute;r&aacute;n&iacute; recenzent&#367;</p>
+</div>
+<div class="panel-body">
 {% for text in texts %}
+<table class="table table-condensed">
 	<tr>
 		<th>Jm&eacute;no</th>
 		<th>St&aacute;hnout</th>
@@ -41,8 +46,17 @@
 		</form>
 	</td>
 </tr>
-{% endfor %}
 </table>
+{% endfor %}
+</div>
+</div>
 {% else %}
-Nejste p&rcaron;ihl&aacute;&scaron;en
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<p>Chyba</p>
+	</div>
+	<div class="panel-body">
+		<p>Nejste p&rcaron;ihl&aacute;&scaron;en</p>
+	</div>
+</div>
 {% endif %}

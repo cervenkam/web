@@ -1,4 +1,8 @@
-<p>K publikov&aacute;n&iacute;</p>
+<div class="panel panel-default">
+<div class="panel-heading">
+	<p>K publikov&aacute;n&iacute;</p>
+</div>
+<div class="panel-body">
 {% for text in texts if not text.published %}
 <table class="table_texts table table-condensed">
 	<tr>
@@ -19,9 +23,15 @@
 			<a href="controller/publish.php?id={{ text.ID }}" data-href="controller/publish.php?id={{ text.ID }}" data-target="NULL">Publikovat</a>
 		</td>
 	</tr>
-{% endfor %}
 </table>
-<p>Publikov&aacute;no</p>
+{% endfor %}
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+	<p>Publikov&aacute;no</p>
+</div>
+<div class="panel-body">
 {% for text in texts if text.published %}
 <table class="table_texts table table-condensed">
 	<tr>
@@ -44,3 +54,5 @@
 	</tr>
 </table>
 {% endfor %}
+</div>
+</div>

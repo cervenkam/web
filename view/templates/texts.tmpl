@@ -1,18 +1,24 @@
-<p>Publikov&aacute;no</p>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<p>Publikov&aacute;no</p>
+	</div>
+	<div class="panel-body">
 {% for text in texts if text.published %}
-<table class="table_texts table table-condensed">
-	<tr>
-		<td>Jm&eacute;no</td>
-		<td>{{ text.name }}</td>
-		<td colspan="3">{{ text.abstract }}
-	</tr>
-	<tr>
-		<td>Auto&rcaron;i</td>
-		<td>{{ text.authors }}</td>
-	</tr>
-	<tr>
-		<td>St&aacute;hnout</td>
-		<td><a class="ajax_content" data-href="controller/download.php?id={{ text.ID }}" data-target="NULL" href="controller/download.php?id={{ text.ID }}">PDF soubor</a></td>
-	</tr>
-</table>
+		<table class="table_texts table table-condensed">
+			<tr>
+				<td>Jm&eacute;no</td>
+				<td>{{ text.name }}</td>
+				<td colspan="3">{{ text.abstract }}
+			</tr>
+			<tr>
+				<td>Auto&rcaron;i</td>
+				<td>{{ text.authors }}</td>
+			</tr>
+			<tr>
+				<td>St&aacute;hnout</td>
+				<td><a class="ajax_content" data-href="controller/download.php?id={{ text.ID }}" data-target="NULL" href="controller/download.php?id={{ text.ID }}">PDF soubor</a></td>
+			</tr>
+		</table>
 {% endfor %}
+	</div>
+</div>

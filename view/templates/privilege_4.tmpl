@@ -1,4 +1,9 @@
 {% if session.user_name %}	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<p>Hodnocen&iacute;</p>
+		</div>
+		<div class="panel-body">
 		<table class="table table-condensed">
 			<tr>
 				<th rowspan="2">N&aacute;zev</th>
@@ -35,7 +40,7 @@
 							data-target="NULL #content" class="ajax_content" method="POST">
 							<input type="hidden" name="text_id" value="{{ text.ID }}" />
 							<input type="hidden" name="type_id" value="{{ type.ID }}" />
-							<input class="small_input" type="text" name="rate" />
+							<input class="small_input" type="number" min="1" max="5" name="rate" />
 							<input type="submit" name="submit" value="Nastavit" />
 						</form>
 						{% endfor %}
@@ -45,6 +50,15 @@
 			</tr>
 		{% endfor %}
 		</table>
+	</div>
+	</div>
 {% else %}
-<p>Nejste p&rcaron;ihl&aacute;&scaron;en</p>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<p>Chyba</p>
+	</div>
+	<div class="panel-body">
+		<p>Nejste p&rcaron;ihl&aacute;&scaron;en</p>
+	</div>
+</div>
 {% endif %}
