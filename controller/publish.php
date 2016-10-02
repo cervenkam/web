@@ -10,7 +10,7 @@
 		$type = 'PUBLISH';
 		$text = 'publikov&aacuten';
 	}
-	broadcast("P&rcaron;&iacute;sp&ecaron;vek &quot".get_text_name($_GET['id'])."&quot byl ".$text);
+	broadcast("P&rcaron;&iacute;sp&ecaron;vek &quot".get_text_name($_GET['id'])."&quot byl ".$text." u&zcaron;ivatelem ".get_full_name());
 	$ret = $pool->query($type,$_GET['id']);
 	DatabasePool::kill();
 	if(!part_only()){

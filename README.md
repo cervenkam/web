@@ -6,7 +6,6 @@ Semestrální práce z KIV/WEB
 * Zkontrolovat, jestli se neda zavolat nejaky skript z controlleru bez opravneni
 * responzivita !!!
 * Autor - smazat a editovat prispevky
-* Administrator - blokovani uzivatele
 * CKeditor
 * okomentovat kod
 
@@ -16,6 +15,7 @@ Semestrální práce z KIV/WEB
 * rozesilat zpravy
 * hodnoceni - 1-5
 * dat AJAXove zpravy do bootstrapu
+* Administrator - blokovani uzivatele
 
 # Lze delat porad
 * Vylepsit stranku uzivatelu

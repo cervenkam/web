@@ -1,7 +1,7 @@
 {% if session.user_name %}
 	{% include 'log.tmpl' %}
 {% else %}
-<form class="ajax_content container" data-target="NULL #login" data-action="controller/register.php log"
+<form class="ajax_content container" data-target="NULL #login #side_menu" data-action="controller/register.php log side_menu"
 	action="controller/register.php" method="post">
 	<div class="form-group">
 		<label class="col-sm-2" for="register_name_field">U&zcaron;ivatelsk&eacute; jm&eacute;no:</label>

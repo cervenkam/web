@@ -3,6 +3,11 @@
 	require_once('functions.php');
 	session_start();
 	$pool = DatabasePool::instance();
+	$res = $pool->query('GET_ID',$_POST['name']);
+	if(!empty($res)){
+		echo "USER ALERADY EXISTS";
+		exit();
+	}
 	$ret = $pool->query(
 		'ADD_REGULAR_USER',
 		$_POST['name'],
@@ -11,8 +16,9 @@
 		$_POST['organization'],
 		$_POST['email']	
 	);
-	broadcast("Nov&eacute; &ccaron;len: ".$_POST['fullname']);
-	DatabasePool::kill();
 	$_SESSION['user_name']=$_POST['name'];
-	$_SESSION['user_id']=$pool->query('GET_ID',$_POST['name'])[0];
+	$res = $pool->query('GET_ID',$_POST['name']);
+	DatabasePool::kill();
+	$_SESSION['user_id']=$res[0];
+	broadcast("Nov&yacute; &ccaron;len: ".$_POST['fullname']);
 ?>

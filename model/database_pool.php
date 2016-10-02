@@ -48,7 +48,7 @@
 			'ADD_TEXT' =>         'INSERT INTO texts VALUES(NULL, ?, ?, ?, ?,NULL)',
 			'RATE' =>             'INSERT INTO ratings VALUES( ?, ?, ?, ?)',
 			//five params
-			'ADD_REGULAR_USER' => 'INSERT INTO users VALUES(NULL, NULL, ?, ?, ?, ?, ?)',
+			'ADD_REGULAR_USER' => 'INSERT INTO users VALUES(NULL, DEFAULT, ?, ?, ?, ?, ?)',
 		//UPDATE
 			//one param
 			'PUBLISH' =>       'UPDATE texts SET published=NOW() WHERE ID=?',
@@ -74,7 +74,14 @@
 		private function query_array($query,$data){
 			try{
 				$stmt = $this->db->prepare($query);
+				if(!$stmt){
+					echo $this->db->errorInfo()[2];
+				}
 				$stmt->execute($data);
+				$err = $stmt->errorInfo();
+				if(!empty($err)){
+					echo $err[2];
+				}
 				return $stmt->fetchAll();
 			}catch(PDOException $e){
 				return false;

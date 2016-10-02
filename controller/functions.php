@@ -1,4 +1,24 @@
 <?php
+	function clean(){
+		foreach(array_keys($_POST) as $key){
+			$_POST[$key] = htmlspecialchars($_POST[$key]);
+		}
+		foreach(array_keys($_GET) as $key){
+			$_GET[$key] = htmlspecialchars($_GET[$key]);
+		}
+	}
+	clean(); // CLEAN $_GET and $_POST
+
+	function can_he_do_it($type,$user){
+		if($type < 1){
+			return true;
+		}
+		$pool = DatabasePool::instance();
+		$list = $pool->query('GET_PRIVILEGE',$user);
+		DatabasePool::kill();
+		return $list[0][0]{$type-1} === "1";
+	}
+
 	function logged_in(){
 		return isset($_SESSION['user_name']);
 	}
