@@ -5,9 +5,12 @@
 	$pool = DatabasePool::instance();
 	if(isset($_GET['delete'])){
 		$type = 'NOT_PUBLISH';
+		$text = 'odstran&ecaron;n';
 	}else{
 		$type = 'PUBLISH';
+		$text = 'publikov&aacuten';
 	}
+	broadcast("P&rcaron;&iacute;sp&ecaron;vek &quot".get_text_name($_GET['id'])."&quot byl ".$text);
 	$ret = $pool->query($type,$_GET['id']);
 	DatabasePool::kill();
 	if(!part_only()){

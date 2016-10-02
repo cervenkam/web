@@ -31,14 +31,19 @@
 			'GET_TEXTS_TO_RATE' =>    'SELECT users.ID AS user_id, texts.ID AS text_id, ratings.type AS type, ratings.mark AS mark FROM texts INNER JOIN ratings ON ratings.text_id = texts.ID INNER JOIN users ON ratings.user_id = users.ID',
 			//one param
 			'LIST_OF_MY_TEXTS' =>     'SELECT * FROM texts WHERE user_id=?',
-			'GET_PRIVILEGE' =>        'SELECT type FROM users WHERE username=?',
+			'GET_PRIVILEGE' =>        'SELECT type FROM users WHERE ID=?',
 			'GET_ID' =>               'SELECT ID FROM users WHERE username=?',
-			'GET_PDF' =>              'SELECT file, LENGTH(file) AS size FROM texts WHERE texts.ID=?',
+			'GET_FULL_NAME' =>        'SELECT full_name FROM users WHERE ID=?',
+			'GET_PDF' =>              'SELECT filename, LENGTH(filename) AS size FROM texts WHERE texts.ID=?',
+			'GET_NEWS' =>             'SELECT message FROM news WHERE user_id=?',
+			'GET_TEXT' =>             'SELECT name FROM texts WHERE ID=?',
 			//two params
 			'GET_USER_ID' =>          'SELECT ID FROM users WHERE username=? AND password=?',
 		//INSERT
 			//one param
 			'ADD_REVIEWER' =>     'INSERT INTO reviewers VALUES( ?, ?)',
+			//two params
+			'ADD_NEWS' =>         'INSERT INTO news VALUES(NULL, ?, ?)',
 			//four params
 			'ADD_TEXT' =>         'INSERT INTO texts VALUES(NULL, ?, ?, ?, ?,NULL)',
 			'RATE' =>             'INSERT INTO ratings VALUES( ?, ?, ?, ?)',
@@ -49,13 +54,15 @@
 			'PUBLISH' =>       'UPDATE texts SET published=NOW() WHERE ID=?',
 			'NOT_PUBLISH' =>   'UPDATE texts SET published=NULL WHERE ID=?',
 			//two params
-			'SET_PRIVILEGE' => 'UPDATE users SET type=? WHERE username=?',
+			'SET_PRIVILEGE' => 'UPDATE users SET type=? WHERE ID=?',
 		//DELETE
 			//one param
-			'REMOVE_REVIEWER' => 'DELETE FROM reviewers WHERE user_id=? AND text_id=?',
+			'REMOVE_NEWS' =>            'DELETE FROM news WHERE user_id=?',
+			//two params
+			'REMOVE_REVIEWER' =>        'DELETE FROM reviewers WHERE user_id=? AND text_id=?',
 			'REMOVE_REVIEWERS_RATES' => 'DELETE FROM ratings WHERE user_id=? AND text_id=?',
 			//three params
-			'NOT_RATE' => 'DELETE FROM ratings WHERE ratings.user_id=? AND ratings.text_id=? AND ratings.type=?'
+			'NOT_RATE' =>               'DELETE FROM ratings WHERE ratings.user_id=? AND ratings.text_id=? AND ratings.type=?'
 		);
 
 		public $db;

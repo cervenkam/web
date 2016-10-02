@@ -2,6 +2,38 @@ var hrefs = [];
 var targets = [];
 var json_data;
 var __switched_off__ = false;
+var running = false;
+
+function pad(string,number){
+	string = string.toString();
+	return string.length < number ? pad("0"+string,number) : string;
+}
+
+function get_time(){
+	var date = new Date();
+	return pad(date.getHours(),2)+":"+pad(date.getMinutes(),2)+":"+pad(date.getSeconds(),2);
+}
+
+function check_news(){
+	json_data = { 
+		method: "POST",
+		url: "controller/check_news.php",
+		data: {
+			"part_only": "yes"
+		}
+	}
+	$.ajax(json_data).done(function(msg){
+		var text = $("#messages").html();
+		if(msg){
+			$("#messages").css('display','block');
+			$("#messages").html(text+get_time()+"<br />"+msg);
+		}
+	});
+	$("#messages").click(function(){
+		$("#messages").css('display','none');
+		$("#messages").html("");
+	});	
+}
 function recursive_ajax(a,max){
 	console.log(json_data);
 	$.ajax({
@@ -9,8 +41,9 @@ function recursive_ajax(a,max){
 		url: hrefs[a],
 		data: json_data
 	}).done(function(msg){
-		console.log(msg+" - "+(targets[a]!="NULL")+" => "+targets[a]);
+		console.log(msg+" - "+(targets[a]!="NULL")+" => "+targets[a]); //TODO
 		if(targets[a]!="NULL"){
+			//window.history.pushState({},hrefs[a],hrefs[a]);
 			$(targets[a]).html(msg);
 		}
 		//TODO delete following else branch
@@ -33,9 +66,6 @@ function ajax_content(target,href,append_data){
 }
 
 function async(){
-	if(__switched_off__){
-		return;
-	}
 	console.log("reload");
 	$("a.ajax_content").each(function(){
 		this.href="javascript:void(0)";
@@ -76,5 +106,18 @@ function async(){
 }
 
 $(document).ready(function(){
+	if(__switched_off__){
+		return;
+	}
+	/*window.addEventListener('popstate',function(e){
+		if(e.state){
+			window.location.href = e.target.location.href;
+		}	
+	});*/
 	async();
+	if(!running){
+		check_news();
+		setInterval(check_news,5000);
+		running = true;
+	}
 });

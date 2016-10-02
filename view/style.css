@@ -11,6 +11,18 @@
 	height: 50px;
 	float: left;
 }
+#messages{ /* TODO delete this */
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+	width: 500px;
+	max-height: 200px;
+	overflow-y: scroll;
+	border-radius: 10px;
+	padding: 10px;
+	background-color: #ffccff;
+	display: none;
+}
 #debug_div{ /* TODO delete this */
 	position: fixed;
 	left: 10px;

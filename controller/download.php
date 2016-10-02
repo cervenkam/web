@@ -9,7 +9,7 @@
 		header('Content-type: application/pdf');
 		header('Content-Disposition: attachment; filename="text_'.$_GET['id'].'.pdf"');
 		header('Content-length: '.$ret[0]['size']);
-		echo $ret[0]['file'];
+		header('Location: ../texts/'.$ret[0]['filename']);
 		exit();
 	}else{
 		echo "DOWNLOAD FAIL<br />";
