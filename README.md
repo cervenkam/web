@@ -3,11 +3,11 @@ Semestrální práce z KIV/WEB
 
 # TODO list
 * Zkontrolovat funkcnost
-* Zkontrolovat, jestli se neda zavolat nejaky skript z controlleru bez opravneni
 * responzivita !!!
 * Autor - smazat a editovat prispevky
 * CKeditor
 * okomentovat kod
+* lze zobrazovat bez prihlaseni/opravneni (PHP to chyti)
 
 # Hotovo
 * Opravit zmenu opravneni - chyba
@@ -16,6 +16,7 @@ Semestrální práce z KIV/WEB
 * hodnoceni - 1-5
 * dat AJAXove zpravy do bootstrapu
 * Administrator - blokovani uzivatele
+* Zkontrolovat, jestli se neda zavolat nejaky skript z controlleru bez opravneni
 
 # Lze delat porad
 * Vylepsit stranku uzivatelu

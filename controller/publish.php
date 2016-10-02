@@ -1,7 +1,13 @@
 <?php
+	$privilege = 2
 	require_once('../model/database_pool.php');
 	require_once('functions.php');
 	session_start();
+	if(!can_i_do_it($privilege)){
+		echo "Nem&aacute;te dostate&ccaron;n&aacute opr&aacute;vn&ecaron;n&iacute;"
+		header("Location: ../index");
+		exit();
+	}
 	$pool = DatabasePool::instance();
 	if(isset($_GET['delete'])){
 		$type = 'NOT_PUBLISH';
@@ -14,7 +20,7 @@
 	$ret = $pool->query($type,$_GET['id']);
 	DatabasePool::kill();
 	if(!part_only()){
-		header("Location:../privilege_2");
+		header("Location:../privilege_".$privilege);
 		exit();
 	}
 ?>

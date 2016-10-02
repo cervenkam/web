@@ -1,7 +1,13 @@
 <?php
+	$privilege = 5;
 	require_once('../model/database_pool.php');
 	require_once('functions.php');
 	session_start();
+	if(!can_i_do_it($privilege)){
+		echo "Nem&aacute;te dostate&ccaron;n&aacute opr&aacute;vn&ecaron;n&iacute;"
+		header("Location: ../index");
+		exit();
+	}
 	$pool = DatabasePool::instance();
 	$info = pathinfo($_FILES['file']['name']);
 	if($info['extension']=='pdf'){
@@ -11,5 +17,6 @@
 		echo "OK";
 	}
 	DatabasePool::kill();
-	header("Location:../privilege_5");
+	header("Location:../privilege_"+$privilege);
+	exit();
 ?>

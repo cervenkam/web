@@ -35,6 +35,7 @@
 			'GET_ID' =>               'SELECT ID FROM users WHERE username=?',
 			'GET_FULL_NAME' =>        'SELECT full_name FROM users WHERE ID=?',
 			'GET_PDF' =>              'SELECT filename, LENGTH(filename) AS size FROM texts WHERE texts.ID=?',
+			'GET_PUBLISHED_PDF' =>    'SELECT filename, LENGTH(filename) AS size FROM texts WHERE texts.ID=? AND published IS NOT NULL',
 			'GET_NEWS' =>             'SELECT message FROM news WHERE user_id=?',
 			'GET_TEXT' =>             'SELECT name FROM texts WHERE ID=?',
 			//two params

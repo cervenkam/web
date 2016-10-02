@@ -3,7 +3,11 @@
 	require_once('functions.php');
 	session_start();
 	$pool = DatabasePool::instance();
-	$ret = $pool->query('GET_PDF',$_GET['id']);
+	if(can_i_do_it(array(2,3,4,5))){
+		$ret = $pool->query('GET_PDF',$_GET['id']);
+	}else{
+		$ret = $pool->query('GET_PUBLISHED_PDF',$_GET['id']);
+	}
 	DatabasePool::kill();
 	if(!empty($ret)){
 		header('Content-type: application/pdf');

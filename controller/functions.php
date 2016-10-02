@@ -9,14 +9,34 @@
 	}
 	clean(); // CLEAN $_GET and $_POST
 
-	function can_he_do_it($type,$user){
+	function can_i_do_it($type){
 		if($type < 1){
 			return true;
 		}
-		$pool = DatabasePool::instance();
-		$list = $pool->query('GET_PRIVILEGE',$user);
-		DatabasePool::kill();
-		return $list[0][0]{$type-1} === "1";
+		if(!logged_in()){
+			return false;
+		}
+		return can_he_do_it($type,$_SESSION['user_id'][0]);
+	}
+	/**
+		it is enough to have only 1 privilege
+	*/
+	function can_he_do_it($types,$user){
+		if(!is_array($types)){
+			$types = array($types);
+		}
+		foreach($types as $type){
+			if($type < 1){
+				return true;
+			}
+			$pool = DatabasePool::instance();
+			$list = $pool->query('GET_PRIVILEGE',$user);
+			DatabasePool::kill();
+			if($list[0][0]{$type-1} === "1"){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	function logged_in(){

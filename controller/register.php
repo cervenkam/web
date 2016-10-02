@@ -1,4 +1,5 @@
 <?php
+	//can do everyone
 	require_once('../model/database_pool.php');
 	require_once('functions.php');
 	session_start();

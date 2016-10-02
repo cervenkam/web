@@ -1,4 +1,5 @@
 <?php
+	$privilege = 1;
 	$response = array(
 		'<img class="privilege" src="view/images/ne.png"  alt="ne"  />',
 		'<img class="privilege" src="view/images/ano.png" alt="ano" />'
@@ -6,6 +7,11 @@
 	require_once 'functions.php';
 	require_once('../model/database_pool.php');
 	session_start();
+	if(!can_i_do_it($privilege)){
+		echo "Nem&aacute;te dostate&ccaron;n&aacute opr&aacute;vn&ecaron;n&iacute;";
+		header("Location: ../index");
+		exit();
+	}
 	$pool = DatabasePool::instance();
 	$priv = get_all_privileges();
 	$curr = $priv[$_GET['user']][$_GET['privilege']]['value'];
@@ -20,6 +26,6 @@
 		echo $response[$curr];
 	}
 	if(!part_only()){
-		header("Location:../privilege_1");
+		header("Location:../privilege_".$privilege);
 	}
 ?>

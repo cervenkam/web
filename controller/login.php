@@ -5,7 +5,7 @@
 	$pool = DatabasePool::instance();
 	$ret = $pool->query('GET_USER_ID',$_POST['name'],$_POST['password']);
 	if(!empty($ret)){
-		if(!can_he_do_it(6,$ret[0][0])){ //TODO FIXED
+		if(!can_he_do_it(6,$ret[0][0])){
 			echo "ACCOUNT BLOCKED";
 		}else{
 			$_SESSION['user_id']=$ret[0];
