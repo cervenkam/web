@@ -3,6 +3,7 @@
 	<head>
 		<title>Programov&aacute;n&iacute; v C++</title>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="controller/js/ajax_content.js"></script>
 		<script src="view/bootstrap/js/bootstrap.min.js"></script>
@@ -25,8 +26,10 @@
 		<div class="container-fluid" id="content">
 			{% include page ~ '.tmpl' %}
 		</div>
+		{% autoescape false %}
 		<div class="well" id="messages">
 		</div>
+		{% endautoescape %}
 		<!-- TODO remove following div -->
 		<div id="debug_div">
 		</div>

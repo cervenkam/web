@@ -17,7 +17,7 @@
 	<tr>
 		<td>Jm&eacute;no</td>
 		<td>{{ text.name }}</td>
-		<td colspan="3">{{ text.abstract }}
+		<td colspan="3">{{ text.abstract|raw }}
 	</tr>
 	<tr>
 		<td>Auto&rcaron;i</td>
@@ -29,7 +29,7 @@
 	</tr>
 	<tr>
 		<td>
-			<a href="controller/publish.php?id={{ text.ID }}" data-href="controller/publish.php?id={{ text.ID }}" data-target="NULL">Upravit</a>
+			<a class="ajax_content" href="controller/edit.php?text_id={{ text.ID }}" data-href="controller/edit.php?text_id={{ text.ID }} edit" data-target="NULL #content">Upravit</a>
 		</td>
 		<td rowspan="2">
 			<a class="ajax_content" href="controller/add.php?delete=true&id={{ text.ID }}" data-href="controller/add.php?delete=true&id={{ text.ID }} privilege_5" data-target="NULL #content">Smazat</a>

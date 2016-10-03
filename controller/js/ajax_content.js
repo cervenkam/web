@@ -111,7 +111,9 @@ $(document).ready(function(){
 		}	
 	});*/
 	async();
-	CKEDITOR.replace('add_abstract_field');
+	if($("#add_abstract_field").lenght){
+		CKEDITOR.replace('add_abstract_field');
+	}
 	if(!running){
 		check_news();
 		setInterval(check_news,5000);

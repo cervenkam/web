@@ -1,0 +1,15 @@
+{% if session.text_id %}
+{% for text in texts if text.ID == session.text_id %}
+	{% set form = {
+		'heading':  'Upravit',
+		'submit':   'Upravit',
+		'name':     text.name,
+		'authors':  text.authors,
+		'abstract': text.abstract,
+		'id':       text.ID
+	} %}
+	{% include 'form.tmpl' %}
+{% else %}
+	<p>Nen&iacute; ur&ccaron;en text</p>
+{% endfor %}
+{% endif %}

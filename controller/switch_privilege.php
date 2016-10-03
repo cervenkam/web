@@ -6,9 +6,10 @@
 	);
 	require_once 'functions.php';
 	require_once('../model/database_pool.php');
+	require_once('../model/messages_pool.php');
 	session_start();
 	if(!can_i_do_it($privilege)){
-		echo "Nem&aacute;te dostate&ccaron;n&aacute opr&aacute;vn&ecaron;n&iacute;";
+		echo MessagesPool::instance()->message('NO_PRIVILEGES');
 		header("Location: ../index");
 		exit();
 	}
@@ -22,7 +23,7 @@
 		$priv = $pool->query('GET_PRIVILEGE',$_GET['user'])[0][0];
 		$priv[$_GET['privilege']-1] = $curr;
 		$pool->query('SET_PRIVILEGE',$priv,$_GET['user']);
-		unicast($_GET['user'],"Byla v&aacute;m upravena opr&aacute;vn&eacute;n&iacute;");
+		unicast($_GET['user'],MessagePool::instance()->message('PRIVILEGES_CHANGED'));
 		echo $response[$curr];
 	}
 	if(!part_only()){

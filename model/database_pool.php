@@ -52,10 +52,14 @@
 			'ADD_TEXT' =>         'INSERT INTO texts VALUES(NULL, ?, ?, ?, ?, ?,NULL)',
 		//UPDATE
 			//one param
-			'PUBLISH' =>       'UPDATE texts SET published=NOW() WHERE ID=?',
-			'NOT_PUBLISH' =>   'UPDATE texts SET published=NULL WHERE ID=?',
+			'PUBLISH' =>         'UPDATE texts SET published=NOW() WHERE ID=?',
+			'NOT_PUBLISH' =>     'UPDATE texts SET published=NULL WHERE ID=?',
 			//two params
-			'SET_PRIVILEGE' => 'UPDATE users SET type=? WHERE ID=?',
+			'SET_PRIVILEGE' =>   'UPDATE users SET type=? WHERE ID=?',
+			//four params
+			'UPDATE_TEXT' =>     'UPDATE texts SET name=?, authors=?, abstract=?, published=NULL WHERE ID=?',
+			//five params
+			'UPDATE_TEXT_PDF' => 'UPDATE texts SET name=?, authors=?, abstract=?, filename=?, published=NULL WHERE ID=?',
 		//DELETE
 			//one param
 			'REMOVE_NEWS' =>            'DELETE FROM news WHERE user_id=?',

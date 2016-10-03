@@ -1,6 +1,7 @@
 <?php
 	//can do everyone
 	require_once('../model/database_pool.php');
+	require_once('../model/messages_pool.php');
 	require_once('functions.php');
 	session_start();
 	$pool = DatabasePool::instance();
@@ -21,5 +22,5 @@
 	$res = $pool->query('GET_ID',$_POST['name']);
 	DatabasePool::kill();
 	$_SESSION['user_id']=$res[0];
-	broadcast("Nov&yacute; &ccaron;len: ".$_POST['fullname']);
+	broadcast(MessagesPool::instance()->message('USER_NEW',$_POST['fullname']));
 ?>

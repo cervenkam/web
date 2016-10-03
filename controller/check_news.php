@@ -16,7 +16,7 @@
 		$pool->query('REMOVE_NEWS',$_SESSION['user_id'][0]);
 	}
 	if(!part_only()){
-		echo "This script should be called with AJAX";
+		//This script should be called with AJAX
 		exit();
 	}
 ?>

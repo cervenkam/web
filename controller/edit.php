@@ -1,0 +1,12 @@
+<?php
+	require_once('../model/database_pool.php');
+	require_once('functions.php');
+	session_start();
+	if(can_i_do_it(6)){
+		$_SESSION['text_id']=$_GET['text_id'];
+	}
+	if(!part_only()){
+		header("Location:../edit");
+		exit();
+	}
+?>
