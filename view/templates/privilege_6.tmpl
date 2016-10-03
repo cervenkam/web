@@ -19,11 +19,10 @@
 		{% for key,value in privileges[session.user_id[0]] %}
 			<td>
 				{% if value.value %}
-					<img class="privilege" src="view/images/ano.png" alt="ano" />
+					<span class="privilege glyphicon glyphicon-ok"></span>
 				{% else %}
-					<img class="privilege" src="view/images/ne.png" alt="ne" />
+					<span class="privilege glyphicon glyphicon-remove"></span>
 				{% endif %}
-			</td>
 		{% endfor %}
 		</tr>
 	</tbody>

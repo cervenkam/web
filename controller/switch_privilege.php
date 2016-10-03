@@ -1,8 +1,8 @@
 <?php
 	$privilege = 1;
 	$response = array(
-		'<img class="privilege" src="view/images/ne.png"  alt="ne"  />',
-		'<img class="privilege" src="view/images/ano.png" alt="ano" />'
+		'<span class="privilege glyphicon glyphicon-remove"></span>',
+		'<span class="privilege glyphicon glyphicon-ok"></span>'
 	);
 	require_once '../model/database_pool.php';
 	require_once '../model/messages_pool.php';
@@ -23,7 +23,7 @@
 		$priv = $pool->query('GET_PRIVILEGE',$_GET['user'])[0][0];
 		$priv[$_GET['privilege']-1] = $curr;
 		$pool->query('SET_PRIVILEGE',$priv,$_GET['user']);
-		unicast($_GET['user'],MessagePool::instance()->message('PRIVILEGES_CHANGED'));
+		unicast($_GET['user'],MessagesPool::instance()->message('PRIVILEGES_CHANGED'));
 		echo $response[$curr];
 	}
 	if(!part_only()){
