@@ -4,13 +4,13 @@ Semestrální práce z KIV/WEB
 # TODO list
 * Zkontrolovat funkcnost
 * responzivita - dlouhe tabulky !!!
-* lze zobrazovat bez prihlaseni/opravneni (PHP to chyti)
 
 # Rozpracovano
-* Autor - editovat prispevky
-* oddelit zpravy AJAXu z controlleru
+* lze zobrazovat bez prihlaseni/opravneni (PHP to chyti)
 
 # Hotovo
+* Autor - editovat prispevky
+* oddelit zpravy AJAXu z controlleru
 * Opravit zmenu opravneni - chyba
 * Odstranit AJAX z uploadu
 * rozesilat zpravy
@@ -26,6 +26,7 @@ Semestrální práce z KIV/WEB
 * Vylepsit celkovy vzhled
 * Pridat nejake texty - stranky jsou prazdne
 * okomentovat kod
+* validovat HTML
 
 # Nice To Have
 * Pridat historii pri volani AJAXem

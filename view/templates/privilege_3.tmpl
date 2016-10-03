@@ -5,15 +5,12 @@
 </div>
 <div class="panel-body">
 {% for text in texts %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<a target="_blank" href="controller/download.php?id={{ text.ID }}">{{ text.name }}</a>
+	</div>
+	<div class="panel-body">
 <table class="table table-condensed">
-	<tr>
-		<th>Jm&eacute;no</th>
-		<th>St&aacute;hnout</th>
-	</tr>
-	<tr>
-		<td>{{ text.name }}</td>
-		<td><a target="_blank" href="controller/download.php?id={{ text.ID }}">PDF soubor</a></td>
-	</tr>
 	<tr>
 		<th>Recenzent</th>
 		<th>Hodnocen&iacute;</th>
@@ -47,6 +44,8 @@
 	</td>
 </tr>
 </table>
+</div>
+</div>
 {% endfor %}
 </div>
 </div>

@@ -29,9 +29,9 @@
 			'TEXT_DELETED' => 'Byl smaz&aacute;n text ?',
 			'TEXT_EDITED' => 'Upraven p&rcaron;&iacute;sp&ecaron;vek ? od ?',
 			'TEXT_EDITED_FILE' => 'Upraven p&rcaron;&iacute;sp&ecaron;vek ? od ? i se souborem PDF',
-			'TEXT_CREATED' => 'P&rcaron;id&aacuten nov&yacute; p%rcaron;&iacute;sp&eacutevek ? od ?',
+			'TEXT_CREATED' => 'P&rcaron;id&aacute;n nov&yacute; p&rcaron;&iacute;sp&ecaron;vek ? od ?',
 			'NO_PRIVILEGES' => 'Nem&aacute;te dostate&ccaron;n&aacute opr&aacute;vn&ecaron;n&iacute;',
-			'PRIVILEGES_CHANGED' => 'Byla v&aacute;m upravena opr&aacute;vn&eacute;n&iacute;'
+			'PRIVILEGES_CHANGED' => 'Byla v&aacute;m upravena opr&aacute;vn&eacute;n&iacute;',
 			'REVIEWER_SET' => 'Byl jste ur&ccaron;en jako recenzent p&rcaron;&iacute;sp&ecaron;vku ?',
 			'REVIEWER_UNSET' => 'Byl jste odstran&ecaron;n jako recenzent p&rcaron;&iacute;sp&ecaron;vku ?',
 			'TEXT_STATUS' => 'P&rcaron;&iacute;sp&ecaron;vek ? byl ? u&zcaron;ivatelem ?',
@@ -40,6 +40,7 @@
 			'USER_NEW' => 'Nov&yacute; &ccaron;len ?',
 			'NOT_PUBLISHED' => 'skryt',
 			'PUBLISHED' => 'publikov&aacute;n',
+			'USER_EXISTS' => 'U&zcaron;ivatel ji&zcaron; existuje'
 		);
 
 		/**

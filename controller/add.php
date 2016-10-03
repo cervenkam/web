@@ -5,7 +5,7 @@
 	require_once('functions.php');
 	session_start();
 	if(!can_i_do_it($privilege)){
-		echo MessagesPool::instance()->message('NO_PRIVILEGES');
+		send_bad_privileges();
 		header("Location: ../index");
 		exit();
 	}

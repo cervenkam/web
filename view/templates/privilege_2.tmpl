@@ -1,33 +1,33 @@
+{% if session.user_name %}
 <div class="panel panel-default">
 <div class="panel-heading">
 	<p>K publikov&aacute;n&iacute;</p>
 </div>
 <div class="panel-body">
 {% for text in texts if not text.published %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<a target="_blank" href="controller/download.php?id={{ text.ID }}">{{ text.name }}</a>
+	</div>
+<div class="panel-body">
 <table class="table_texts table table-condensed">
-	<tr>
-		<td>Jm&eacute;no</td>
-		<td>{{ text.name }}</td>
-		<td colspan="3">{{ text.abstract|raw }}</td>
-	</tr>
 	<tr>
 		<td>Auto&rcaron;i</td>
 		<td>{{ text.authors }}</td>
+		<td colspan="3">{{ text.abstract|raw }}</td>
 	</tr>
 	<tr>
 		<td>Vlo&zcaron;il</td>
 		<td>{{ users[text.user_id].full_name }}</td>
 	</tr>
 	<tr>
-		<td>St&aacute;hnout</td>
-		<td><a target="_blank" href="controller/download.php?id={{ text.ID }}">PDF soubor</a></td>
-	</tr>
-	<tr>
-		<td rowspan="4">
+		<td rowspan="2">
 			<a href="controller/publish.php?id={{ text.ID }}" data-href="controller/publish.php?id={{ text.ID }}" data-target="NULL">Publikovat</a>
 		</td>
 	</tr>
 </table>
+</div>
+</div>
 {% endfor %}
 </div>
 </div>
@@ -37,32 +37,39 @@
 </div>
 <div class="panel-body">
 {% for text in texts if text.published %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<a target="_blank" href="controller/download.php?id={{ text.ID }}">{{ text.name }}</a>
+	</div>
+<div class="panel-body">
 <table class="table_texts table table-condensed">
-	<tr>
-		<td>Jm&eacute;no</td>
-		<td>{{ text.name }}</td>
-		<td colspan="3">{{ text.abstract|raw }}</td>
-	</tr>
 	<tr>
 		<td>Auto&rcaron;i</td>
 		<td>{{ text.authors }}</td>
+		<td colspan="3">{{ text.abstract|raw }}</td>
 	</tr>
 	<tr>
 		<td>Vlo&zcaron;il</td>
 		<td>{{ users[text.user_id].full_name }}</td>
 	</tr>
 	<tr>
-		<td>St&aacute;hnout</td>
-		<td>
-			<a target="_blank" href="controller/download.php?id={{ text.ID }}">PDF soubor</a>
-		</td>
-	</tr>
-	<tr>
-		<td rowspan="4">
+		<td rowspan="2">
 			<a href="controller/publish.php?delete=true&id={{ text.ID }}" data-href="controller/publish.php?delete=true&id={{ text.ID }}" data-target="NULL">Nepublikovat</a>
 		</td>
 	</tr>
 </table>
+</div>
+</div>
 {% endfor %}
 </div>
 </div>
+{% else %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<p>Chyba</p>
+	</div>
+	<div class="panel-body">
+		<p>Nejste p&rcaron;ihl&aacute;&scaron;en</p>
+	</div>
+</div>
+{% endif %}

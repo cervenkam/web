@@ -7,7 +7,7 @@
 	$pool = DatabasePool::instance();
 	$res = $pool->query('GET_ID',$_POST['name']);
 	if(!empty($res)){
-		echo "USER ALERADY EXISTS";
+		echo "USER ALREADY EXISTS";
 		exit();
 	}
 	$ret = $pool->query(

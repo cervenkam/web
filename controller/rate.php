@@ -5,7 +5,7 @@
 	require_once('functions.php');
 	session_start();
 	if(!can_i_do_it($privilege)){
-		echo MessagesPool::instance()->message('NO_PRIVILEGES');
+		send_bad_privileges();
 		header("Location: ../index");
 		exit();
 	}
@@ -16,7 +16,7 @@
 	}else{
 		if($_POST['rate'] >= 1 && $_POST['rate'] <= 5){
 			$ret = $pool->query('RATE',$_SESSION['user_id']['ID'],$_POST['text_id'],$_POST['rate'],$_POST['type_id']);
-			broadcast(MessagesPool::instance()->message('MARK_ADDED',get_full_name(),get_text_name($_GET['text_id'])));
+			broadcast(MessagesPool::instance()->message('MARK_ADDED',get_full_name(),get_text_name($_POST['text_id'])));
 		}
 	}
 	DatabasePool::kill();

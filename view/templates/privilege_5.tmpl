@@ -1,6 +1,6 @@
 {% if session.user_name %}
 {% set form = {
-	'heading':  'P&rcaron;id&aacute;n&iacute;',
+	'heading':  'P&rcaron;id&aacute;n&iacute; p&rcaron;&iacute;sp&ecaron;vku',
 	'submit':   'P&rcaron;idat',
 	'name':     'Muj text',
 	'authors':  'Majitel',
@@ -13,15 +13,16 @@
 </div>
 <div class="panel-body">
 {% for text in texts if text.user_id == session.user_id[0] %}
+<div class="pane panel-default">
+	<div class="panel-heading">
+		{{ text.name }}
+	</div>
+	<div class="panel-body">
 <table class="table_texts table table-condensed">
-	<tr>
-		<td>Jm&eacute;no</td>
-		<td>{{ text.name }}</td>
-		<td colspan="3">{{ text.abstract|raw }}
-	</tr>
 	<tr>
 		<td>Auto&rcaron;i</td>
 		<td>{{ text.authors }}</td>
+		<td rowspan="3">{{ text.abstract|raw }}</td>
 	</tr>
 	<tr>
 		<td>St&aacute;hnout</td>
@@ -36,11 +37,20 @@
 		</td>
 	</tr>
 </table>
+</div>
+</div>
 {% else %}
 	<p>Zat&iacute;m nic nep&rcaron;id&aacute;no</p>
 {% endfor %}
 </div>
 </div>
 {% else %}
-Nejste p&rcaron;ihl&aacute;&scaron;en
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<p>Chyba</p>
+	</div>
+	<div class="panel-body">
+		<p>Nejste p&rcaron;ihl&aacute;&scaron;en</p>
+	</div>
+</div>
 {% endif %}

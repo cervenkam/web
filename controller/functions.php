@@ -1,4 +1,5 @@
 <?php
+
 	/**
 	 * Escapes HTML entities in both POST and GET values
 	 */
@@ -289,5 +290,17 @@
 			}
 		}
 		DatabasePool::kill();
+	}
+	
+	/**
+	 * Sends user message that he is not allowed to do some operation
+	 * Sends only if possible
+	 *
+	 * @param string $text Short version of message to send
+	 */
+	function send_bad_privileges($text = 'NO_PRIVILEGES'){
+		if(isset($_SESSION['user_id'][0])){
+			unicast_id($_SESSION['user_id'][0],MessagesPool::instance()->message($text),0);
+		}
 	}
 ?>

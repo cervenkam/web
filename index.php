@@ -1,7 +1,8 @@
 <?php
 	require_once 'controller/twig/lib/Twig/Autoloader.php';
-	require_once 'controller/functions.php';
 	require_once 'model/database_pool.php';
+	require_once 'model/messages_pool.php';
+	require_once 'controller/functions.php';
 	session_start();
 	Twig_Autoloader::register();
 	$loader = new Twig_Loader_Filesystem('view/templates');
