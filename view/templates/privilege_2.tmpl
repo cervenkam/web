@@ -15,11 +15,15 @@
 		<td>{{ text.authors }}</td>
 	</tr>
 	<tr>
+		<td>Vlo&zcaron;il</td>
+		<td>{{ users[text.user_id].full_name }}</td>
+	</tr>
+	<tr>
 		<td>St&aacute;hnout</td>
 		<td><a target="_blank" href="controller/download.php?id={{ text.ID }}">PDF soubor</a></td>
 	</tr>
 	<tr>
-		<td rowspan="3">
+		<td rowspan="4">
 			<a href="controller/publish.php?id={{ text.ID }}" data-href="controller/publish.php?id={{ text.ID }}" data-target="NULL">Publikovat</a>
 		</td>
 	</tr>
@@ -44,13 +48,17 @@
 		<td>{{ text.authors }}</td>
 	</tr>
 	<tr>
+		<td>Vlo&zcaron;il</td>
+		<td>{{ users[text.user_id].full_name }}</td>
+	</tr>
+	<tr>
 		<td>St&aacute;hnout</td>
 		<td>
 			<a target="_blank" href="controller/download.php?id={{ text.ID }}">PDF soubor</a>
 		</td>
 	</tr>
 	<tr>
-		<td rowspan="3">
+		<td rowspan="4">
 			<a href="controller/publish.php?delete=true&id={{ text.ID }}" data-href="controller/publish.php?delete=true&id={{ text.ID }}" data-target="NULL">Nepublikovat</a>
 		</td>
 	</tr>

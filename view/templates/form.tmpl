@@ -1,0 +1,49 @@
+{% autoescape false %}
+<div class="panel panel-default">
+<div class="panel-heading">
+	<p>{{ form.heading }} p&rcaron;&iacute;sp&ecaron;vk&#367;</p>
+</div>
+<div class="panel-body">
+<form enctype="multipart/form-data" class="container" action="controller/add.php" method="post">
+	{% if form.id %}
+	<input type="hidden" name="id" value="{{ form.id }}" />
+	{% endif %}
+	<div class="form-group">
+		<label class="col-sm-2" for="add_name_field">N&aacute;zev p&rcaron;&iacute;sp&ecaron;vku:</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" name="name" id="add_name_field" value="{{ form.name }}" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2" for="add_owners_field">Auto&rcaron;i:</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" name="owners" id="add_owners_field" value="{{ form.authors }}" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2" for="add_abstract_field">Abstract:</label>
+		<div class="col-sm-10">
+			<textarea type="text" class="form-control" name="abstract" id="add_abstract_field">{{ form.abstract }}</textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		{% if form.id %}
+		<label class="col-sm-2" for="add_file_checkbox">P&rcaron;epsat</label>
+		<div class="col-sm-2">
+			<input type="checkbox" name="file_checkbox" />
+		</div>
+		{% endif %}
+		<label class="col-sm-2" for="add_file_field">PDF soubor:</label>
+		<div class="col-sm-10">
+			<input type="file" name="file" id="register_file_field" />
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<input type="submit" value="{{ form.submit }}" />
+		</div>
+	</div>
+</form>
+</div>
+</div>
+{% endautoescape %}

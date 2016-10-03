@@ -3,7 +3,7 @@ Semestrální práce z KIV/WEB
 
 # TODO list
 * Zkontrolovat funkcnost
-* responzivita !!!
+* responzivita - dlouhe tabulky !!!
 * Autor - smazat a editovat prispevky
 * CKeditor
 * okomentovat kod

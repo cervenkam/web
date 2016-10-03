@@ -8,6 +8,7 @@
 			<tr>
 				<th rowspan="2">N&aacute;zev</th>
 				<th rowspan="2">Auto&rcaron;i</th>
+				<th rowspan="2">Vlo&zcaron;il</th>
 				<th rowspan="2">Abstract</th>
 				<th rowspan="2">PDF</th>
 				<th colspan="{{ rating_types|length }}">Zn&aacute;mky</th>
@@ -21,6 +22,7 @@
 			<tr>
 				<td>{{ text.name }}</td>
 				<td>{{ text.authors }}</td>
+				<td>{{ users[text.user_id].full_name }}</td>
 				<td>{{ text.abstract }}</td>
 				<td><a target="_blank" href="controller/download.php?id={{ text.ID }}">PDF soubor</a></td>
 				{% for type in rating_types %}

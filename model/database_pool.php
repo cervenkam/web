@@ -46,10 +46,10 @@
 			//two params
 			'ADD_NEWS' =>         'INSERT INTO news VALUES(NULL, ?, ?)',
 			//four params
-			'ADD_TEXT' =>         'INSERT INTO texts VALUES(NULL, ?, ?, ?, ?,NULL)',
 			'RATE' =>             'INSERT INTO ratings VALUES( ?, ?, ?, ?)',
 			//five params
 			'ADD_REGULAR_USER' => 'INSERT INTO users VALUES(NULL, DEFAULT, ?, ?, ?, ?, ?)',
+			'ADD_TEXT' =>         'INSERT INTO texts VALUES(NULL, ?, ?, ?, ?, ?,NULL)',
 		//UPDATE
 			//one param
 			'PUBLISH' =>       'UPDATE texts SET published=NOW() WHERE ID=?',
@@ -59,6 +59,7 @@
 		//DELETE
 			//one param
 			'REMOVE_NEWS' =>            'DELETE FROM news WHERE user_id=?',
+			'REMOVE_TEXT' =>            'DELETE FROM texts WHERE ID=?',
 			//two params
 			'REMOVE_REVIEWER' =>        'DELETE FROM reviewers WHERE user_id=? AND text_id=?',
 			'REMOVE_REVIEWERS_RATES' => 'DELETE FROM ratings WHERE user_id=? AND text_id=?',

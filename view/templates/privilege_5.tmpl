@@ -1,40 +1,44 @@
 {% if session.user_name %}
+{% set form = {
+	'heading':  'P&rcaron;id&aacute;n&iacute;',
+	'submit':   'P&rcaron;idat',
+	'name':     'Muj text',
+	'authors':  'Majitel',
+	'abstract': 'Abstrakt'
+} %}
+{% include 'form.tmpl' %}
 <div class="panel panel-default">
 <div class="panel-heading">
-	<p>P&rcaron;id&aacute;v&aacute;n&iacute; p&rcaron;&iacute;sp&ecaron;vk&#367;</p>
+	<p>Moje p&rcaron;&iacute;sp&ecaron;vky</p>
 </div>
 <div class="panel-body">
-<form enctype="multipart/form-data" class="container" action="controller/add.php" method="post">
-	<div class="form-group">
-		<label class="col-sm-2" for="add_name_field">N&aacute;zev p&rcaron;&iacute;sp&ecaron;vku:</label>
-		<div class="col-sm-10">
-			<input type="text" class="form-control" name="name" id="add_name_field" value="super_name" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2" for="add_owners_field">Auto&rcaron;i:</label>
-		<div class="col-sm-10">
-			<input type="text" class="form-control" name="owners" id="add_owners_field" value="He and She" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2" for="add_abstract_field">Abstract:</label>
-		<div class="col-sm-10">
-			<input type="text" class="form-control" name="abstract" id="add_abstract_field" value="abstract" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2" for="add_file_field">PDF soubor:</label>
-		<div class="col-sm-10">
-			<input type="file" name="file" id="register_file_field" />
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-10">
-			<input type="submit" value="P&rcaron;idat" />
-		</div>
-	</div>
-</form>
+{% for text in texts if text.user_id == session.user_id[0] %}
+<table class="table_texts table table-condensed">
+	<tr>
+		<td>Jm&eacute;no</td>
+		<td>{{ text.name }}</td>
+		<td colspan="3">{{ text.abstract }}
+	</tr>
+	<tr>
+		<td>Auto&rcaron;i</td>
+		<td>{{ text.authors }}</td>
+	</tr>
+	<tr>
+		<td>St&aacute;hnout</td>
+		<td><a target="_blank" href="controller/download.php?id={{ text.ID }}">PDF soubor</a></td>
+	</tr>
+	<tr>
+		<td>
+			<a href="controller/publish.php?id={{ text.ID }}" data-href="controller/publish.php?id={{ text.ID }}" data-target="NULL">Upravit</a>
+		</td>
+		<td rowspan="2">
+			<a class="ajax_content" href="controller/add.php?delete=true&id={{ text.ID }}" data-href="controller/add.php?delete=true&id={{ text.ID }} privilege_5" data-target="NULL #content">Smazat</a>
+		</td>
+	</tr>
+</table>
+{% else %}
+	<p>Zat&iacute;m nic nep&rcaron;id&aacute;no</p>
+{% endfor %}
 </div>
 </div>
 {% else %}

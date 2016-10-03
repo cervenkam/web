@@ -23,7 +23,6 @@
 	$twig->addGlobal('session',$_SESSION);
 	$template = $twig->loadTemplate($template_page);
 	echo $template->render(array(
-		/*'autoescape' => true,*/ //FIXME own solution
 		'page' => $page,
 		'privileges' => get_all_privileges(),
 		'ratings' => get_texts_to_rate(),

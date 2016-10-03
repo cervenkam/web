@@ -54,6 +54,7 @@ function recursive_ajax(a,max){
 			recursive_ajax(a+1,max);
 		}else{
 			async();
+			CKEDITOR.replace('add_abstract_field');
 		}
 	});
 }
@@ -115,6 +116,7 @@ $(document).ready(function(){
 		}	
 	});*/
 	async();
+	CKEDITOR.replace('add_abstract_field');
 	if(!running){
 		check_news();
 		setInterval(check_news,5000);
