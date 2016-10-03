@@ -110,6 +110,14 @@
 	function get_all_texts(){
 		$pool = DatabasePool::instance();
 		$list = $pool->query('GET_ALL_TEXTS');
+		for($line=0; $line<count($list); $line++){
+			$text = $list[$line]['abstract'];
+			$text = html_entity_decode($text); //dangerous - but will be corected with following lines of code
+			$text = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is','<b>scripts not allowed</b><br>',$text);
+			$text = preg_replace('/<iframe\b[^>]*>(.*?)<\/iframe>/is','<b>iframes not allowed</b><br>',$text);
+			$text = preg_replace('/(on.*?)=".*?"/','',$text);
+			$list[$line]['abstract'] = $text;
+		}
 		DatabasePool::kill();
 		return $list;
 	}

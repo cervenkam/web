@@ -35,13 +35,11 @@ function check_news(){
 	});	
 }
 function recursive_ajax(a,max){
-	console.log(json_data);
 	$.ajax({
 		method: "POST",
 		url: hrefs[a],
 		data: json_data
 	}).done(function(msg){
-		console.log(msg+" - "+(targets[a]!="NULL")+" => "+targets[a]); //TODO
 		if(targets[a]!="NULL"){
 			//window.history.pushState({},hrefs[a],hrefs[a]);
 			$(targets[a]).html(msg);
@@ -67,7 +65,6 @@ function ajax_content(target,href,append_data){
 }
 
 function async(){
-	console.log("reload");
 	$("a.ajax_content").each(function(){
 		this.href="javascript:void(0)";
 		$(this).unbind('click');
@@ -82,7 +79,6 @@ function async(){
 	$("form.ajax_content").each(function(){
 		var prnt = this;
 		var sbmt = $(prnt).find(":submit");
-		console.log(sbmt);
 		$(sbmt).prop("type","button");
 		$(sbmt).unbind('click');
 		$(prnt).find("input").keypress(function(e){
@@ -96,7 +92,6 @@ function async(){
 			for(var a=0; a<ser.length; a++){
 				data[ser[a].name] = ser[a].value;
 			}
-			console.log($(prnt));
 			ajax_content(
 				$(prnt).data('target'),
 				$(prnt).data('action'),

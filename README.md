@@ -4,8 +4,7 @@ Semestrální práce z KIV/WEB
 # TODO list
 * Zkontrolovat funkcnost
 * responzivita - dlouhe tabulky !!!
-* Autor - smazat a editovat prispevky
-* CKeditor
+* Autor - editovat prispevky
 * okomentovat kod
 * lze zobrazovat bez prihlaseni/opravneni (PHP to chyti)
 
@@ -17,6 +16,8 @@ Semestrální práce z KIV/WEB
 * dat AJAXove zpravy do bootstrapu
 * Administrator - blokovani uzivatele
 * Zkontrolovat, jestli se neda zavolat nejaky skript z controlleru bez opravneni
+* CKeditor
+* Autor - smazat prispevky
 
 # Lze delat porad
 * Vylepsit stranku uzivatelu
