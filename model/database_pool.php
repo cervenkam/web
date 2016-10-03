@@ -1,24 +1,53 @@
 <?php
+	/**
+	 * Class to receive data from database
+	 * Uses simple string substitution to make short coding
+	 *
+	 * @author Martin Cervenka A14B0239P
+	 * @version 10/03/2016
+	 */
 	class DatabasePool{
+
+		/** Singleton - reference to own instance */
 		private static $inst = null;
 
+		/**
+		 * Inits the communication with database
+		 * Calls some queries which are neccessary to proper function
+		 *
+		 * @param string $dns DNS string for PDO connection
+		 * @param string $username Username for connection to database
+		 * @param string $password Password for connection to database
+		 */
 		public static function init($dns,$username,$password){
 			DatabasePool::$inst = new DatabasePool($dns,$username,$password);
 			DatabasePool::$inst->query('SET_UTF8');
 		}
+
+		/**
+		 * Returns the instance of this singleton
+		 * Lazy initialization
+		 *
+		 * @return DatabasePool Singleton instance
+		 */
 		public static function instance(){
 			if(DatabasePool::$inst === null){
 				DatabasePool::init('mysql:host=localhost;dbname=web','web','password');
 			}
 			return DatabasePool::$inst;
 		}
+
+		/**
+		 * Kills the connection to database
+		 */
 		public static function kill(){
 			DatabasePool::$inst = null;
 		}
 
+		/** Texts for string substitutions */
 		private $QUERIES = array(
 		//SET
-				//no params
+			//no params
 			'SET_UTF8' => 'SET NAMES utf8',
 		//SELECT
 			//no params
@@ -71,12 +100,27 @@
 			'NOT_RATE' =>               'DELETE FROM ratings WHERE ratings.user_id=? AND ratings.text_id=? AND ratings.type=?'
 		);
 
+		/** Reference to database connection */
 		public $db;
 
+		/**
+		 * Creates the singleton instance
+		 *
+		 * @param string $dns DNS string for PDO connection
+		 * @param string $username Username for connection to database
+		 * @param string $password Password for connection to database
+		 */
 		private function __construct($dns,$username,$password){
 			$this->db = new PDO($dns,$username,$password);
 		}
 
+		/**
+		 * Calls the query to database
+		 *
+		 * @param string $query Prepared query
+		 * @param array $data Data for substitution
+		 * @return array|bool Data from SELECT / false if error
+		 */
 		private function query_array($query,$data){
 			try{
 				$stmt = $this->db->prepare($query);
@@ -94,6 +138,13 @@
 			}	
 		}
 
+		/**
+		 * Variable parameters function, not listed parameters are data for prepared statemets
+		 *
+		 * @param string $query Short string which will be substituted internally
+		 * @param ... Data for prepared statemets
+		 * @return array|bool Data from SELECT / false if error
+		 */
 		public function query($query){
 			$numargs = func_num_args();
 			$arr = array();

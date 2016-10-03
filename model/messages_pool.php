@@ -1,8 +1,22 @@
 <?php
+	/**
+	 * Class to separate texts
+	 * It brings posibility to translate or simply change the messages
+	 *
+	 * @author Martin Cervenka A14B0239P
+	 * @version 10/03/2016
+	 */
 	class MessagesPool{
 		
+		/** Singleton - reference to own instance */
 		private static $inst = null;
 		
+		/**
+		 * Returns the instance of this singleton
+		 * Lazy initialization
+		 *
+		 * @return MessagesPool Singleton instance
+		 */
 		public static function instance(){
 			if(MessagesPool::$inst === null){
 				MessagesPool::$inst = new MessagesPool();
@@ -10,6 +24,7 @@
 			return MessagesPool::$inst;
 		}
 		
+		/** Texts for string substitutions */
 		private $MESSAGES = array(
 			'TEXT_DELETED' => 'Byl smaz&aacute;n text ?',
 			'TEXT_EDITED' => 'Upraven p&rcaron;&iacute;sp&ecaron;vek ? od ?',
@@ -27,6 +42,13 @@
 			'PUBLISHED' => 'publikov&aacute;n',
 		);
 
+		/**
+		 * Creates the message from parameters
+		 *
+		 * @param string $message Message with question marks
+		 * @param array $data Data for substitution
+		 * @return string Substituted message
+		 */
 		private function message_array($message,$parameters){
 			$output = $message;
 			for($param=0; $param<count($parameters); $param++){
@@ -35,6 +57,13 @@
 			return $output;
 		}	
 
+		/**
+		 * Variable parameters function, not listed parameters are data for substitution
+		 *
+		 * @param string $message Short string which will be substituted internally
+		 * @param ... Data for substitution
+		 * @return string Substituted message
+		 */
 		public function message($message){
 			$numargs = func_num_args();
 			$arr = array();

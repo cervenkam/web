@@ -1,4 +1,7 @@
 <?php
+	/**
+	 * Escapes HTML entities in both POST and GET values
+	 */
 	function clean(){
 		foreach(array_keys($_POST) as $key){
 			$_POST[$key] = htmlspecialchars($_POST[$key]);
@@ -9,6 +12,12 @@
 	}
 	clean(); // CLEAN $_GET and $_POST
 
+	/**
+	 * Determines if current user can do specific action
+	 *
+	 * @param int $type Specific action
+	 * @return bool Can current user do $type action
+	 */
 	function can_i_do_it($type){
 		if($type < 1){
 			return true;
@@ -19,8 +28,12 @@
 		return can_he_do_it($type,$_SESSION['user_id'][0]);
 	}
 	/**
-		it is enough to have only 1 privilege
-	*/
+	 * Determines if some user can do specific action(s)
+	 *
+	 * @param int|array $types Specific action(s)
+	 * @param int $user User's ID
+	 * @return bool Can $user do $types action(s)
+	 */
 	function can_he_do_it($types,$user){
 		if(!is_array($types)){
 			$types = array($types);
@@ -39,13 +52,29 @@
 		return false;
 	}
 
+	/**
+	 * Returns true if somebody is logged in
+	 *
+	 * @return bool Is somebody logged in?
+	 */
 	function logged_in(){
 		return isset($_SESSION['user_name']);
 	}
 	
+	/**
+	 * Should be returned only part of webpage
+	 *
+	 * @return bool Only part of webpage?
+	 */
 	function part_only(){
 		return isset($_POST['part_only']) && $_POST['part_only'] == 'yes';
 	}
+
+	/**
+	 * Returns array of all privileges
+	 *
+	 * @return array Array of all privileges
+	 */
 	function get_all_privileges(){
 		if(logged_in()){
 			$pool = DatabasePool::instance();
@@ -68,9 +97,21 @@
 		return $arr;
 	}
 
+	/**
+	 * Returns full name of currently logged user
+	 *
+	 * @return string Full name of currently logged user
+	 */
 	function get_full_name(){
 		return get_full_name_id($_SESSION['user_id'][0]);
 	}
+
+	/**
+	 * Returns full name of specific user
+	 *
+	 * @param int $id Id of the specific user
+	 * @return string Full name of user $id
+	 */
 	function get_full_name_id($id){
 		$pool = DatabasePool::instance();
 		$text = $pool->query('GET_FULL_NAME',$id);
@@ -78,6 +119,12 @@
 		return $text[0]['full_name'];
 	}
 
+	/**
+	 * Returns name of specific text
+	 *
+	 * @param int $id Id of the text
+	 * @return string Name of text with id $id
+	 */
 	function get_text_name($id){
 		$pool = DatabasePool::instance();
 		$text = $pool->query('GET_TEXT',$id);
@@ -85,6 +132,11 @@
 		return $text[0]['name'];
 	}
 
+	/**
+	 * Returns array of all users
+	 *
+	 * @return array Array of all users
+	 */
 	function get_all_users(){
 		if(!logged_in()){
 			return array();
@@ -100,6 +152,12 @@
 		return $arr;
 	}
 
+	/**
+	 * Returns array of all rating types
+	 * Rating types means e.g. Language quality, style quality ...
+	 *
+	 * @return array Array of all rating types
+	 */
 	function get_all_rating_types(){
 		$pool = DatabasePool::instance();
 		$list = $pool->query('GET_ALL_RATING_TYPES');
@@ -107,6 +165,11 @@
 		return $list;
 	}
 
+	/**
+	 * Returns array of all texts
+	 *
+	 * @return array Array of all texts
+	 */
 	function get_all_texts(){
 		$pool = DatabasePool::instance();
 		$list = $pool->query('GET_ALL_TEXTS');
@@ -122,6 +185,11 @@
 		return $list;
 	}
 
+	/**
+	 * Returns array of all texts which should be rated
+	 *
+	 * @return array Array of all texts which should be rated
+	 */
 	function get_texts_to_rate(){
 		if(!logged_in()){
 			return array();
@@ -138,6 +206,11 @@
 
 	}
 	
+	/**
+	 * Returns array of all reviews of currently logged user
+	 *
+	 * @return array Array of all reviews of currently logged user
+	 */
 	function get_my_reviews(){
 		if(!logged_in()){
 			return array();
@@ -153,16 +226,36 @@
 		return $arr;
 	}
 	
+	//DEBUG_ONLY
+	/**
+	 * Wraps var_dump to &lt;pre&gt; HTML tag
+	 * Output then looks like tree (no more inline prints)
+	 *
+	 * @param whatever $x Variable to dump
+	 */
 	function my_var_dump($x){
 		echo '<pre>';
 		var_dump($x);
 		echo '</pre>';
 	}
 
+	/**
+	 * Sends message to specific user, but not to himself
+	 *
+	 * @param int $user_id Specific user
+	 * @param string $message The message
+	 */
 	function unicast($user_id,$message){
 		unicast_id($user_id,$message,$_SESSION['user_id'][0]);
 	}
 
+	/**
+	 * Sends message to specific user, but not if the users id are same
+	 *
+	 * @param int $user_id Specific user
+	 * @param string $message The message
+	 * @param int $my_id User id to compare
+	 */
 	function unicast_id($user_id,$message,$my_id){
 		if($user_id != $my_id){
 			$pool = DatabasePool::instance();
@@ -171,10 +264,21 @@
 		}
 	}
 
+	/**
+	 * Sends message to everyone except the logged user
+	 *
+	 * @param string $message Message to send
+	 */
 	function broadcast($message){
 		broadcast_id($message,$_SESSION['user_id'][0]);
 	}
 
+	/**
+	 * Sends message to everyone except the specific user
+	 *
+	 * @param string $message Message to send
+	 * @param int $my_id Id of the specific user
+	 */
 	function broadcast_id($message,$my_id){	
 		//sending messages
 		$users = get_all_users();

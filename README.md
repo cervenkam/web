@@ -4,7 +4,6 @@ Semestrální práce z KIV/WEB
 # TODO list
 * Zkontrolovat funkcnost
 * responzivita - dlouhe tabulky !!!
-* okomentovat kod
 * lze zobrazovat bez prihlaseni/opravneni (PHP to chyti)
 
 # Rozpracovano
@@ -26,6 +25,7 @@ Semestrální práce z KIV/WEB
 * Vylepsit stranku uzivatelu
 * Vylepsit celkovy vzhled
 * Pridat nejake texty - stranky jsou prazdne
+* okomentovat kod
 
 # Nice To Have
 * Pridat historii pri volani AJAXem
