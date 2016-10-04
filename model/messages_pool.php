@@ -40,7 +40,10 @@
 			'USER_NEW' => 'Nov&yacute; &ccaron;len ?',
 			'NOT_PUBLISHED' => 'skryt',
 			'PUBLISHED' => 'publikov&aacute;n',
-			'USER_EXISTS' => 'U&zcaron;ivatel ji&zcaron; existuje'
+			'USER_EXISTS' => 'U&zcaron;ivatel ji&zcaron; existuje',
+			'USER_BLOCKED' => 'Tento u&zcaron;ivatel byl zablokov&aacute;n',
+			'USER_BAD' => '&Scaron;patn&eacute; jm&eacute;no nebo heslo',
+			'USER_LOGOUT' => 'Byl jste odhl&aacute;&scaron;en'
 		);
 
 		/**

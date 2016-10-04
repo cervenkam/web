@@ -10,8 +10,15 @@
 		echo "USER ALREADY EXISTS";
 		exit();
 	}
+	$add = 'ADD_REGULAR_USER';
+	$pool = DatabasePool::instance();
+	$list = $pool->query('GET_ALL_USERS');
+	DatabasePool::kill();
+	if(empty($list)){
+		$add = 'ADD_ROOT_USER';
+	}	
 	$ret = $pool->query(
-		'ADD_REGULAR_USER',
+		$add,
 		$_POST['name'],
 		$_POST['password'],
 		$_POST['fullname'],

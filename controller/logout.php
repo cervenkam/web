@@ -1,5 +1,6 @@
 <?php
 	//can do everyone
+	require_once('../model/messages_pool.php');
 	require_once('functions.php');
 	session_start();
 	unset($_SESSION['user_id']);
@@ -8,6 +9,6 @@
 		header("Location:../index");
 		exit();
 	}else{
-		echo "LOGOUT OK";
+		echo MessagesPool::instance()->message('USER_LOGOUT');
 	}
 ?>

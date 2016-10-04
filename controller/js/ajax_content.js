@@ -43,16 +43,17 @@ function recursive_ajax(a,max){
 		if(targets[a]!="NULL"){
 			//window.history.pushState({},hrefs[a],hrefs[a]);
 			$(targets[a]).html(msg);
-		}
-		//TODO delete following else branch
-		else{
-			$("#debug_div").html(msg);
+		}else if((msg) && (msg.trim()!='')){
+			$("#messages").html($("#messages").html()+"<br />"+get_time()+" "+msg);
+			$("#messages").css('display','block');
 		}
 		if(a+1<max){
 			recursive_ajax(a+1,max);
 		}else{
 			async();
-			CKEDITOR.replace('add_abstract_field');
+			if($("#add_abstract_field").lenght){
+				CKEDITOR.replace('add_abstract_field');
+			}
 		}
 	});
 }
