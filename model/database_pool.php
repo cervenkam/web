@@ -32,7 +32,10 @@
 		 */
 		public static function instance(){
 			if(DatabasePool::$inst === null){
-				DatabasePool::init('mysql:host=localhost;dbname=web','web','password');
+				$db_name = 'web';
+				$db_username = 'web';
+				$db_password = 'password';
+				DatabasePool::init('mysql:host=localhost;dbname='.$db_name,$db_username,$db_password);
 			}
 			return DatabasePool::$inst;
 		}
