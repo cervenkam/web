@@ -20,7 +20,7 @@
 	$ret = $pool->query(
 		$add,
 		$_POST['name'],
-		$_POST['password'],
+		hash('ripemd160',$_POST['password']),
 		$_POST['fullname'],
 		$_POST['organization'],
 		$_POST['email']	

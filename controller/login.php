@@ -4,7 +4,7 @@
 	require_once('functions.php');
 	session_start();
 	$pool = DatabasePool::instance();
-	$ret = $pool->query('GET_USER_ID',$_POST['name'],$_POST['password']);
+	$ret = $pool->query('GET_USER_ID',$_POST['name'],hash('ripemd160',$_POST['password']));
 	if(!empty($ret)){
 		if(!can_he_do_it(6,$ret[0][0])){
 			echo MessagesPool::instance()->message('USER_BLOCKED');
