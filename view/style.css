@@ -20,14 +20,6 @@
 	overflow-y: scroll;
 	display: none;
 }
-#debug_div{ /* TODO delete this */
-	position: fixed;
-	left: 10px;
-	bottom: 10px;
-	width: 300px;
-	background-color: #880000;
-	color: white;
-}
 img.privilege{
 	width: 20px;
 }
